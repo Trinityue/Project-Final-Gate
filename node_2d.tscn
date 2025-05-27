@@ -16,9 +16,10 @@ layer_0/tile_data = PackedInt32Array(0, 0, 1, 1, 65536, 1, 2, 131072, 1, 65536, 
 
 [node name="Enemy_Spawner" type="Node2D" parent="."]
 
-[node name="Spawn_Point" type="Node2D" parent="Enemy_Spawner"]
+[node name="Spawn_Point" type="Node2D" parent="Enemy_Spawner" node_paths=PackedStringArray("spawn_Points")]
 position = Vector2(33, 25)
 script = ExtResource("2_epypp")
+spawn_Points = []
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 scale = Vector2(0.3, 0.3)

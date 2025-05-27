@@ -6,7 +6,7 @@ public partial class SpawnPoint : Node2D
 
     [Export] PackedScene enemyScene;
     [Export] Node2D[] spawn_Points;
-    [Export] float eps = 1f;
+    [Export] float eps = 1;
 
     float spawn_rate;
     float tus = 0; // time until spawn

@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxmlwu47fpjoo"]
+[gd_scene load_steps=4 format=3 uid="uid://cxmlwu47fpjoo"]
 
+[ext_resource type="Script" uid="uid://dxcyiki1y54u0" path="res://Code/Enemy.cs" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://cxrtipjcncd3k" path="res://Enemy.png" id="1_7k104"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7bn3"]
@@ -7,6 +8,7 @@ size = Vector2(14, 14)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, -20)
+script = ExtResource("1_4gyqm")
 
 [node name="Enemy_GFX" type="Sprite2D" parent="."]
 position = Vector2(0, 20)
