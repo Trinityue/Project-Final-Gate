@@ -7,15 +7,15 @@
 size = Vector2(55, 55.3333)
 
 [node name="Enemy" type="CharacterBody2D"]
-position = Vector2(0, -20)
+position = Vector2(476, 321)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4gyqm")
+metadata/_edit_horizontal_guides_ = [349.0]
 
 [node name="Enemy_GFX" type="Sprite2D" parent="."]
-position = Vector2(198, 119)
-scale = Vector2(3, 3)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_7k104")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(197.5, 119)
-scale = Vector2(3, 3)
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_s7bn3")
