@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7bn3"]
 size = Vector2(55, 55.3333)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("PathNodes")]
 position = Vector2(476, 321)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4gyqm")
+PathNodes = []
 metadata/_edit_horizontal_guides_ = [349.0]
 
 [node name="Enemy_GFX" type="Sprite2D" parent="."]

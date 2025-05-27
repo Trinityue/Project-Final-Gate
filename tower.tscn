@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fi6rp7x77p5t"]
+
+[ext_resource type="Texture2D" uid="uid://dkt4kh0ajba44" path="res://Tower.png" id="1_k1sas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vedim"]
+size = Vector2(54, 56)
+
+[node name="Tower" type="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vedim")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k1sas")

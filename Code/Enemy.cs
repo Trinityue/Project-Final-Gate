@@ -3,14 +3,27 @@ using System;
 
 public partial class Enemy : CharacterBody2D
 {
+    [Export] public Node2D[] PathNodes; // Im Editor: 2D-Nodes reinziehen
+    [Export] public float Speed = 100f;
+
+    private int currentTarget = 0;
+
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("ui_accept")) // z.B. Enter-Taste
+        if (PathNodes == null || PathNodes.Length == 0)
+            return;
+
+        // Wenn letzter Waypoint erreicht, nicht mehr weiterlaufen
+        if (currentTarget >= PathNodes.Length)
+            return;
+
+        Vector2 target = PathNodes[currentTarget].GlobalPosition;
+        Vector2 direction = (target - GlobalPosition).Normalized();
+        GlobalPosition += direction * Speed * (float)delta;
+
+        if (GlobalPosition.DistanceTo(target) < 5f)
         {
-            RandomNumberGenerator rng = new RandomNumberGenerator();
-            float x = rng.RandfRange(0, 1024); // Passe die Werte an deine Spielfeldgröße an
-            float y = rng.RandfRange(0, 768);
-            GlobalPosition = new Vector2(x, y);
+            currentTarget++;
         }
     }
 }
