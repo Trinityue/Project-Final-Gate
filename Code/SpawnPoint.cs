@@ -31,9 +31,10 @@ public partial class SpawnPoint : Node2D
     }
 
     private void Spawn()
-    {
-        Vector2 location;
-        Enemy enemy = (enemy)enemyScene.Instantiate();
+    {   RandomNumberGenerator rng = new RandomNumberGenerator();
+        Vector2 location = spawn_Points[rng.Randi() % spawn_Points.Length].GlobalPosition;
+        // Ensure the spawn point is not occupied
+        Enemy enemy = (Enemy)enemyScene.Instantiate();
         enemy.GlobalPosition = location;
         GetTree().Root.AddChild(enemy);
         }

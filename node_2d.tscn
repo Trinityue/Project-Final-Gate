@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://cv0brb8dhqbma" path="res://Code/SpawnPoint.cs" id="2_epypp"]
+[ext_resource type="Texture2D" uid="uid://cxrtipjcncd3k" path="res://Enemy.png" id="3_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(58, 57)
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,3 +19,13 @@ layer_0/tile_data = PackedInt32Array(0, 0, 1, 1, 65536, 1, 2, 131072, 1, 65536, 
 [node name="Spawn_Point" type="Node2D" parent="Enemy_Spawner"]
 position = Vector2(33, 25)
 script = ExtResource("2_epypp")
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+scale = Vector2(0.3, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Enemy" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("3_epypp")
