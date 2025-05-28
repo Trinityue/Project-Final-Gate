@@ -6,7 +6,7 @@ public partial class Enemy : CharacterBody2D
     [Export] public Node2D[] PathNodes; // Im Editor: 2D-Nodes reinziehen
     [Export] public float Speed = 100f;
 
-    private int currentTarget = 0;
+    public int currentTarget = 0;
 
     public override void _Process(double delta)
     {
