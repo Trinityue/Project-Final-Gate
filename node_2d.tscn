@@ -1,14 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://cv0brb8dhqbma" path="res://Code/SpawnPoint.cs" id="2_epypp"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
-[ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://enemy.tscn" id="3_0hol4"]
-[ext_resource type="Script" uid="uid://d3ia658kp12yj" path="res://Code/WorldLogic.cs" id="5_q6r6c"]
-[ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="6_kdubu"]
+[ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-24, 23)
+position = Vector2(-2, 3)
+rotation = -0.000160798
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_0e48y")
@@ -20,19 +19,25 @@ script = ExtResource("2_q6r6c")
 
 [node name="Enemy_Spawner" type="Node2D" parent="Enemy2" node_paths=PackedStringArray("spawn_Points", "PathNodes")]
 position = Vector2(37, 22)
+rotation = -1.309
 script = ExtResource("2_epypp")
 enemyScene = ExtResource("3_0hol4")
 spawn_Points = [NodePath("Spawn_Point")]
+eps = 5.0
 PathNodes = [NodePath("../../Waypoint 1"), NodePath("../../Waypoint 2"), NodePath("../../Waypoint 3"), NodePath("../../Waypoint 4")]
+MinSpeed = 400.0
+MaxSpeed = 400.0
 
 [node name="Spawn_Point" type="Node2D" parent="Enemy2/Enemy_Spawner"]
+position = Vector2(-12.3904, -15.3199)
 
 [node name="Enemy" parent="Enemy2/Enemy_Spawner/Spawn_Point" instance=ExtResource("3_0hol4")]
 position = Vector2(371, -168)
 scale = Vector2(1, 1)
+Speed = 300.0
 
 [node name="Waypoint 1" type="Node2D" parent="."]
-position = Vector2(1064, 24.005)
+position = Vector2(1064, 24.1711)
 
 [node name="Waypoint 2" type="Node2D" parent="."]
 position = Vector2(1062, 619)
@@ -44,6 +49,4 @@ position = Vector2(425, 614)
 position = Vector2(423, 223)
 
 [node name="World_Logic" type="Node2D" parent="."]
-script = ExtResource("5_q6r6c")
-
-[node name="Tower" parent="." instance=ExtResource("6_kdubu")]
+position = Vector2(-1, 3)

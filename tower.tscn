@@ -1,19 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://fi6rp7x77p5t"]
+[gd_scene load_steps=3 format=3 uid="uid://fi6rp7x77p5t"]
 
 [ext_resource type="Texture2D" uid="uid://dkt4kh0ajba44" path="res://Tower.png" id="1_k1sas"]
-[ext_resource type="Script" uid="uid://boi8lhga0msan" path="res://Code/Tower.cs" id="1_vedim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vedim"]
-size = Vector2(54, 56)
+size = Vector2(54, 54)
 
-[node name="Tower" type="Node2D"]
-scale = Vector2(0.75, 0.75)
-script = ExtResource("1_vedim")
+[node name="Node2D" type="Node2D"]
+
+[node name="Tower_GFX" type="Sprite2D" parent="."]
+texture = ExtResource("1_k1sas")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_vedim")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_k1sas")

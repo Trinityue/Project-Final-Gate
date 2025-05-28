@@ -10,6 +10,8 @@ public partial class SpawnPoint : Node2D
 
     [Export] public Node2D[] PathNodes; // Ziehe im Editor deine Wegpunkte rein
 
+    [Export] public float MinSpeed = 80f;   // Minimal einstellbare Geschwindigkeit
+    [Export] public float MaxSpeed = 150f;  // Maximal einstellbare Geschwindigkeit
     float spawn_rate;
     float tus = 0; // time until spawn
 
@@ -43,7 +45,11 @@ public partial class SpawnPoint : Node2D
 
         Enemy enemy = (Enemy)enemyScene.Instantiate();
         enemy.GlobalPosition = location;
-        enemy.PathNodes = this.PathNodes; // <--- Hier werden die Wegpunkte zugewiesen!
+        enemy.PathNodes = this.PathNodes;
+
+        // Geschwindigkeit zufällig im Bereich [MinSpeed, MaxSpeed] setzen
+        enemy.Speed = rng.RandfRange(MinSpeed, MaxSpeed);
+
         GetTree().Root.AddChild(enemy);
     }
 

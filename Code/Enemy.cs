@@ -15,7 +15,10 @@ public partial class Enemy : CharacterBody2D
 
         // Wenn letzter Waypoint erreicht, nicht mehr weiterlaufen
         if (currentTarget >= PathNodes.Length)
+        {
+            QueueFree(); // Enemy verschwindet
             return;
+        }
 
         Vector2 target = PathNodes[currentTarget].GlobalPosition;
         Vector2 direction = (target - GlobalPosition).Normalized();
