@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=8 format=3 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://cv0brb8dhqbma" path="res://Code/SpawnPoint.cs" id="2_epypp"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
+[ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://dpivechu4fypg" path="res://bullet.tscn" id="6_kdubu"]
+[ext_resource type="Script" uid="uid://b6sijo7rt5dys" path="res://Code/Bullet.cs" id="7_d21ai"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-2, 3)
@@ -50,3 +53,9 @@ position = Vector2(423, 223)
 
 [node name="World_Logic" type="Node2D" parent="."]
 position = Vector2(-1, 3)
+
+[node name="Tower" parent="." instance=ExtResource("5_kdubu")]
+position = Vector2(218.966, 209.035)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("6_kdubu")]
+script = ExtResource("7_d21ai")
