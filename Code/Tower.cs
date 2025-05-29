@@ -1,64 +1,58 @@
 using Godot;
 using System;
-using System.IO;
 
 public partial class Tower : Node2D
 {
-    [Export] PackedScene bulletScene;
-    [Export] public float bullet_speed = 500f; // Speed of the bullet
-    [Export] public float bps = 3f; // Bullets per second
-    [Export] public float bullet_damage = 10f; // Damage of the bullet
+    [Export] public PackedScene BulletScene;
+    [Export] public Node2D Spawner;
+    [Export] public float bps = 1f; // bullets per sec 
+    [Export] public Node2D bullets;
+    [Export] public Node2D[] PathNodes; // Ziehe im Editor deine Wegpunkte rein
+    [Export] public float MinSpeed = 80f;   // Minimal einstellbare Geschwindigkeit
+    [Export] public float MaxSpeed = 150f;  // Maximal einstellbare Geschwindigkeit
 
-    float fire_rate;
-    float time_until_fire = 0f; // Time until the next bullet can be fired
-
+    public float spawn_rate;
+    public float tus = 0; // time until spawn
     public override void _Ready()
     {
-        fire_rate = 1f / bps; // Calculate fire rate based on bullets per second
+        spawn_rate = 1 / bps;
     }
 
     public override void _Process(double delta)
     {
-        time_until_fire += (float)delta;
-
-        if (time_until_fire > fire_rate)
+        if (tus > spawn_rate)
         {
-            // Nächsten Enemy finden
-            Enemy nearestEnemy = GetNearestEnemy();
-            if (nearestEnemy == null)
-                return;
-
-            RigidBody2D bullet = bulletScene.Instantiate<RigidBody2D>();
-            bullet.Position = GlobalPosition;
-
-            // Richtung zum Enemy berechnen
-            Vector2 direction = (nearestEnemy.GlobalPosition - GlobalPosition).Normalized();
-            bullet.LinearVelocity = direction * bullet_speed;
-
-            GetTree().Root.AddChild(bullet);
-
-            time_until_fire = 0f;
+            Spawn();
+            tus = 0;
+        }
+        else
+        {
+            tus += (float)delta;
         }
     }
-
-    // Hilfsmethode, um den nächsten Enemy zu finden
-    private Enemy GetNearestEnemy()
+    private void Spawn()
     {
-        Enemy nearest = null;
-        float minDist = float.MaxValue;
+        if (Spawner == null)
+            return;
 
-        foreach (var node in GetTree().GetNodesInGroup("Enemies"))
+        // Bullet wird am Spawner-Node erzeugt
+        Vector2 location = Spawner.GlobalPosition;
+
+        // Bullet instanziieren
+        var bulletInstance = BulletScene.Instantiate();
+        if (bulletInstance is Bullet bullet)
         {
-            if (node is Enemy enemy)
-            {
-                float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    nearest = enemy;
-                }
-            }
+            bullet.GlobalPosition = location;
+            bullet.PathNodes = this.PathNodes;
+            bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+
+            // Bullet als Kind zum Szenenbaum hinzufügen
+            GetTree().Root.AddChild(bullet);
         }
-        return nearest;
-    }
+        else
+        {
+            GD.PrintErr("BulletScene ist nicht vom Typ 'Bullet'.");
+        }
+    }   
+    
 }

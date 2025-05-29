@@ -1,18 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://fi6rp7x77p5t"]
+[gd_scene load_steps=4 format=3 uid="uid://fi6rp7x77p5t"]
 
 [ext_resource type="Texture2D" uid="uid://dkt4kh0ajba44" path="res://Tower.png" id="1_k1sas"]
 [ext_resource type="Script" uid="uid://df08a7wkh8vir" path="res://Code/Tower.cs" id="1_stebd"]
-[ext_resource type="PackedScene" uid="uid://dpivechu4fypg" path="res://bullet.tscn" id="2_jbe1c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vedim"]
 size = Vector2(54, 54)
 
-[node name="Tower" type="Node2D"]
+[node name="Tower" type="Node2D" node_paths=PackedStringArray("PathNodes")]
 script = ExtResource("1_stebd")
-bulletScene = ExtResource("2_jbe1c")
+PathNodes = []
 
 [node name="Tower_GFX" type="Sprite2D" parent="."]
 texture = ExtResource("1_k1sas")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vedim")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
