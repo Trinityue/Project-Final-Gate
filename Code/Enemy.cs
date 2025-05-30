@@ -8,6 +8,11 @@ public partial class Enemy : CharacterBody2D
 
     public int currentTarget = 0;
 
+    public override void _Ready()
+    {
+        AddToGroup("Enemies");
+    }
+
     public override void _Process(double delta)
     {
         if (PathNodes == null || PathNodes.Length == 0)

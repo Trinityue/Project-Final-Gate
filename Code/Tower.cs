@@ -6,13 +6,14 @@ public partial class Tower : Node2D
     [Export] public PackedScene BulletScene;
     [Export] public Node2D Spawner;
     [Export] public float bps = 1f; // bullets per sec 
-    [Export] public Node2D bullets;
     [Export] public Node2D[] PathNodes; // Ziehe im Editor deine Wegpunkte rein
     [Export] public float MinSpeed = 80f;   // Minimal einstellbare Geschwindigkeit
     [Export] public float MaxSpeed = 150f;  // Maximal einstellbare Geschwindigkeit
+    [Export] public float AttackRange = 100f;     // Schussreichweite
 
-    public float spawn_rate;
-    public float tus = 0; // time until spawn
+    private float spawn_rate;
+    private float tus = 0; // time until spawn
+
     public override void _Ready()
     {
         spawn_rate = 1 / bps;
@@ -29,30 +30,50 @@ public partial class Tower : Node2D
         {
             tus += (float)delta;
         }
+
+        // Enemies im Umkreis hervorheben
+        foreach (var enemy in GetTree().GetNodesInGroup("Enemies"))
+        {
+            if (enemy is Enemy e && GlobalPosition.DistanceTo(e.GlobalPosition) < AttackRange)
+            {
+                e.FlashColor(Colors.Red, 0.2f);
+            }
+        }
     }
+
     private void Spawn()
     {
-        if (Spawner == null)
+        if (Spawner == null || BulletScene == null)
             return;
 
-        // Bullet wird am Spawner-Node erzeugt
-        Vector2 location = Spawner.GlobalPosition;
+        // Nächsten Enemy suchen
+        Enemy nearestEnemy = null;
+        float nearestDist = float.MaxValue;
+        foreach (var node in GetTree().GetNodesInGroup("Enemies"))
+        {
+            if (node is Enemy e)
+            {
+                float dist = GlobalPosition.DistanceTo(e.GlobalPosition);
+                if (dist < nearestDist)
+                {
+                    nearestDist = dist;
+                    nearestEnemy = e;
+                }
+            }
+        }
+
+        if (nearestEnemy == null)
+            return; // Kein Ziel
 
         // Bullet instanziieren
         var bulletInstance = BulletScene.Instantiate();
         if (bulletInstance is Bullet bullet)
         {
-            bullet.GlobalPosition = location;
-            bullet.PathNodes = this.PathNodes;
+            bullet.GlobalPosition = Spawner.GlobalPosition;
+            bullet.Target = nearestEnemy;
             bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
 
-            // Bullet als Kind zum Szenenbaum hinzufügen
             GetTree().Root.AddChild(bullet);
         }
-        else
-        {
-            GD.PrintErr("BulletScene ist nicht vom Typ 'Bullet'.");
-        }
-    }   
-    
+    }
 }

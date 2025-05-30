@@ -1,32 +1,28 @@
 using Godot;
 using System;
 
-public partial class Bullet : RigidBody2D
+public partial class Bullet : Node2D
 {
-    [Export] public Node2D[] PathNodes;
-    [Export] public float Speed = 100f;
+    [Export] public Node2D[] PathNodes; // <-- Diese Zeile hinzufügen!
+    [Export] public Enemy Target; // Ziel-Enemy
 
-    private int currentTarget = 0;
+    [Export] public float Speed = 300f;
 
     public override void _PhysicsProcess(double delta)
     {
-        if (PathNodes == null || PathNodes.Length == 0)
-            return;
-
-        if (currentTarget >= PathNodes.Length)
+        if (Target == null || !IsInstanceValid(Target))
         {
-            QueueFree(); // Bullet disappears
+            QueueFree();
             return;
         }
 
-        Vector2 target = PathNodes[currentTarget].GlobalPosition;
-        Vector2 direction = (target - GlobalPosition).Normalized();
-        // Für RigidBody2D: LinearVelocity statt GlobalPosition direkt setzen
-        LinearVelocity = direction * Speed;
+        Vector2 direction = (Target.GlobalPosition - GlobalPosition).Normalized();
+        GlobalPosition += direction * Speed * (float)delta;
 
-        if (GlobalPosition.DistanceTo(target) < 5f)
+        // Optional: Bullet verschwindet, wenn sie sehr nah am Enemy ist
+        if (GlobalPosition.DistanceTo(Target.GlobalPosition) < 10f)
         {
-            currentTarget++;
+            QueueFree();
         }
     }
 }
