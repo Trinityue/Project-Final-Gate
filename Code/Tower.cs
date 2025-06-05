@@ -32,7 +32,7 @@ public partial class Tower : Node2D
         {
             if (enemy is Enemy e && GlobalPosition.DistanceTo(e.GlobalPosition) < AttackRange)
             {
-                e.FlashColor(Colors.Red, 0.2f);
+                
             }
         }
     }
@@ -61,12 +61,26 @@ public partial class Tower : Node2D
             return;
 
         var bulletInstance = BulletScene.Instantiate();
-        if (bulletInstance is Bullet bullet)
+        // Sicherstellen, dass das Script korrekt erkannt wird
+        if (bulletInstance is Node2D bulletNode)
         {
-            bullet.GlobalPosition = Spawner.GlobalPosition;
-            bullet.Target = nearestEnemy;
-            bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
-            GetTree().Root.AddChild(bullet);
+            // Versuche das Bullet-Script zu bekommen
+            if (bulletNode is Bullet bullet)
+            {
+                bullet.GlobalPosition = Spawner.GlobalPosition;
+                bullet.Target = nearestEnemy;
+                bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+            }
+            else
+            {
+                GD.PrintErr("BulletScene ist nicht vom Typ 'Bullet'.");
+            }
+            GetTree().Root.AddChild(bulletNode);
+        }
+        else
+        {
+            GD.PrintErr("BulletScene Root ist nicht vom Typ 'Node2D'.");
         }
     }
 }
+
