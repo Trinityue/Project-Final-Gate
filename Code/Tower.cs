@@ -5,30 +5,26 @@ public partial class Tower : Node2D
 {
     [Export] public PackedScene BulletScene;
     [Export] public Node2D Spawner;
-    [Export] public float bps = 1f; // bullets per sec 
-    [Export] public Node2D[] PathNodes; // Ziehe im Editor deine Wegpunkte rein
-    [Export] public float MinSpeed = 80f;   // Minimal einstellbare Geschwindigkeit
-    [Export] public float MaxSpeed = 150f;  // Maximal einstellbare Geschwindigkeit
-    [Export] public float AttackRange = 100f;     // Schussreichweite
+    [Export] public float bps = 1f; // bullets per second
+    [Export] public float MinSpeed = 80f;
+    [Export] public float MaxSpeed = 150f;
+    [Export] public float AttackRange = 100f;
 
-    private float spawn_rate;
-    private float tus = 0; // time until spawn
+    private float spawnRate;
+    private float timeUntilSpawn = 0f;
 
     public override void _Ready()
     {
-        spawn_rate = 1 / bps;
+        spawnRate = 1f / bps;
     }
 
     public override void _Process(double delta)
     {
-        if (tus > spawn_rate)
+        timeUntilSpawn += (float)delta;
+        if (timeUntilSpawn > spawnRate)
         {
-            Spawn();
-            tus = 0;
-        }
-        else
-        {
-            tus += (float)delta;
+            TryShootAtNearestEnemy();
+            timeUntilSpawn = 0f;
         }
 
         // Enemies im Umkreis hervorheben
@@ -41,12 +37,11 @@ public partial class Tower : Node2D
         }
     }
 
-    private void Spawn()
+    private void TryShootAtNearestEnemy()
     {
         if (Spawner == null || BulletScene == null)
             return;
 
-        // Nächsten Enemy suchen
         Enemy nearestEnemy = null;
         float nearestDist = float.MaxValue;
         foreach (var node in GetTree().GetNodesInGroup("Enemies"))
@@ -63,16 +58,14 @@ public partial class Tower : Node2D
         }
 
         if (nearestEnemy == null)
-            return; // Kein Ziel
+            return;
 
-        // Bullet instanziieren
         var bulletInstance = BulletScene.Instantiate();
         if (bulletInstance is Bullet bullet)
         {
             bullet.GlobalPosition = Spawner.GlobalPosition;
             bullet.Target = nearestEnemy;
             bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
-
             GetTree().Root.AddChild(bullet);
         }
     }
