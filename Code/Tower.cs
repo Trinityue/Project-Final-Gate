@@ -51,7 +51,7 @@ public partial class Tower : Node2D
             if (node is Enemy e)
             {
                 float dist = GlobalPosition.DistanceTo(e.GlobalPosition);
-                if (dist < nearestDist)
+                if (dist < nearestDist && dist <= AttackRange) // Nur Enemys in Reichweite!
                 {
                     nearestDist = dist;
                     nearestEnemy = e;
