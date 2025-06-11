@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime;
 
 public partial class Tower : Node2D
 {
@@ -9,6 +10,7 @@ public partial class Tower : Node2D
     [Export] public float MinSpeed = 80f;
     [Export] public float MaxSpeed = 150f;
     [Export] public float AttackRange = 100f;
+    public Enemy Target { get; set; }
 
     private float spawnRate;
     private float timeUntilSpawn = 0f;
@@ -32,7 +34,7 @@ public partial class Tower : Node2D
         {
             if (enemy is Enemy e && GlobalPosition.DistanceTo(e.GlobalPosition) < AttackRange)
             {
-                
+                // Beispiel: e.FlashColor(Colors.Red, 0.2f);
             }
         }
     }
@@ -61,20 +63,16 @@ public partial class Tower : Node2D
             return;
 
         var bulletInstance = BulletScene.Instantiate();
-        // Sicherstellen, dass das Script korrekt erkannt wird
-        if (bulletInstance is Node2D bulletNode)
+        if (bulletInstance is Bullet bullet)
         {
-            // Versuche das Bullet-Script zu bekommen
-            if (bulletNode is Bullet bullet)
-            {
-                bullet.GlobalPosition = Spawner.GlobalPosition;
-                bullet.Target = nearestEnemy;
-                bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
-            }
-            else
-            {
-                GD.PrintErr("BulletScene ist nicht vom Typ 'Bullet'.");
-            }
+            bullet.GlobalPosition = Spawner.GlobalPosition;
+            bullet.Target = nearestEnemy;
+            bullet.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+            GetTree().Root.AddChild(bullet);
+        }
+        else if (bulletInstance is Node2D bulletNode)
+        {
+            GD.PrintErr("BulletScene ist nicht vom Typ 'Bullet'.");
             GetTree().Root.AddChild(bulletNode);
         }
         else

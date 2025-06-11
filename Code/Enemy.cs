@@ -5,6 +5,7 @@ public partial class Enemy : CharacterBody2D
 {
     [Export] public Node2D[] PathNodes; // Im Editor: 2D-Nodes reinziehen
     [Export] public float Speed = 100f;
+    [Export] public float Health = 100f; //Healthsystem 
 
     public int currentTarget = 0;
 
@@ -32,6 +33,15 @@ public partial class Enemy : CharacterBody2D
         if (GlobalPosition.DistanceTo(target) < 5f)
         {
             currentTarget++;
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        Health -= amount;
+        if (Health <= 0)
+        {
+            QueueFree(); // Enemy verschwindet bei 0 HP
         }
     }
 }
