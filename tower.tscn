@@ -14,7 +14,7 @@ Spawner = NodePath("Tower_Spawner")
 bps = 10.0
 MinSpeed = 500.0
 MaxSpeed = 500.0
-AttackRange = 150.0
+AttackRange = 1e+06
 
 [node name="Tower_GFX" type="Sprite2D" parent="."]
 texture = ExtResource("1_k1sas")

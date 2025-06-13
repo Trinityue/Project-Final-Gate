@@ -1,39 +1,43 @@
 using Godot;
 using System;
 
-public partial class Enemy : CharacterBody2D
+public partial class Enemy : Node2D
 {
-    [Export] public Node2D[] PathNodes; // Im Editor: 2D-Nodes reinziehen
     [Export] public float Speed = 100f;
-    [Export] public float Health = 100f; //Healthsystem 
+    public Path2D Path; // Wird vom Spawner gesetzt
+    private PathFollow2D pathFollow;
 
-    public int currentTarget = 0;
+    [Export] public float Health = 100f; // Lebenspunkte
 
     public override void _Ready()
     {
-        AddToGroup("Enemies");
+        // PathFollow2D erzeugen und an den Pfad hängen
+        AddToGroup("Enemies"); // Enemy zur Gruppe "Enemies" hinzufügen
+        pathFollow = new PathFollow2D();
+        if (Path != null)
+        {
+            Path.AddChild(pathFollow);
+            pathFollow.Progress = 0;
+            GlobalPosition = pathFollow.GlobalPosition;
+        }
+        else
+        {
+            QueueFree();
+        }
     }
 
     public override void _Process(double delta)
     {
-        if (PathNodes == null || PathNodes.Length == 0)
+        if (pathFollow == null || Path == null)
             return;
 
-        // Wenn letzter Waypoint erreicht, nicht mehr weiterlaufen
-        if (currentTarget >= PathNodes.Length)
-        {
-            QueueFree(); // Enemy verschwindet
-            return;
-        }
+        pathFollow.Progress += Speed * (float)delta;
 
-        Vector2 target = PathNodes[currentTarget].GlobalPosition;
-        Vector2 direction = (target - GlobalPosition).Normalized();
-        GlobalPosition += direction * Speed * (float)delta;
+        GlobalPosition = pathFollow.GlobalPosition;
 
-        if (GlobalPosition.DistanceTo(target) < 5f)
-        {
-            currentTarget++;
-        }
+        // Enemy entfernen, wenn das Ende erreicht ist
+        if (pathFollow.ProgressRatio >= 1.0)
+            QueueFree();
     }
 
     public void TakeDamage(float amount)

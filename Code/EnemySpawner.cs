@@ -3,54 +3,41 @@ using System;
 
 public partial class EnemySpawner : Node2D
 {
+    [Export] public PackedScene enemyScene;
+    [Export] public Path2D Path; // Path2D im Editor zuweisen
+    [Export] public float eps = 1f;
+    [Export] public float MinSpeed = 80f;
+    [Export] public float MaxSpeed = 150f;
 
-    [Export] PackedScene enemyScene;
-    [Export] Node2D[] spawn_Points;
-    [Export] float eps = 1f;
-
-    [Export] public Node2D[] PathNodes; // Ziehe im Editor deine Wegpunkte rein
-
-    [Export] public float MinSpeed = 80f;   // Minimal einstellbare Geschwindigkeit
-    [Export] public float MaxSpeed = 150f;  // Maximal einstellbare Geschwindigkeit
-    float spawn_rate;
-    float tus = 0; // time until spawn
+    private float spawn_rate;
+    private float tus = 0;
 
     public override void _Ready()
     {
-        spawn_rate = 1 / eps;
-
+        spawn_rate = 1f / eps;
     }
 
     public override void _Process(double delta)
     {
+        tus += (float)delta;
         if (tus > spawn_rate)
         {
             Spawn();
             tus = 0;
         }
-        else
-        {
-            tus += (float)delta;
-        }
     }
 
     private void Spawn()
     {
-        if (spawn_Points == null || spawn_Points.Length == 0)
+        if (enemyScene == null || Path == null)
             return;
 
-        RandomNumberGenerator rng = new RandomNumberGenerator();
-        int index = (int)(rng.Randi() % spawn_Points.Length);
-        Vector2 location = spawn_Points[index].GlobalPosition;
-
-        Enemy enemy = (Enemy)enemyScene.Instantiate();
-        enemy.GlobalPosition = location;
-        enemy.PathNodes = this.PathNodes;
-
-        // Geschwindigkeit zufällig im Bereich [MinSpeed, MaxSpeed] setzen
-        enemy.Speed = rng.RandfRange(MinSpeed, MaxSpeed);
-
-        GetTree().Root.AddChild(enemy);
+        var enemyInstance = enemyScene.Instantiate();
+        if (enemyInstance is Enemy enemy)
+        {
+            enemy.Path = Path;
+            enemy.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+            GetTree().Root.AddChild(enemy);
+        }
     }
-
 }
