@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=8 format=4 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://b8ltrkm78a6tx" path="res://Code/GameManager.cs" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://tnpgx4wfxn6c" path="res://money_managment.tscn" id="6_kdubu"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
@@ -45,3 +46,6 @@ MaxSpeed = 300.0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_kdubu")
+
+[node name="MoneyManagment" parent="." instance=ExtResource("6_kdubu")]
+Money = 100.0

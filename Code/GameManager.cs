@@ -1,23 +1,28 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class GameManager : Node2D
 {
     [Export] public PackedScene TowerScene;
+    [Export] public int TowerCost = 50;
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent)
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
         {
-            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
+            if (MoneyManagment.Instance.CanAfford(TowerCost))
             {
-                // Tower instanziieren und an die Mausposition setzen
-                var towerInstance = TowerScene.Instantiate() as Node2D;
-                if (towerInstance != null)
-                {
-                    towerInstance.GlobalPosition = GetGlobalMousePosition();
-                    GetTree().Root.AddChild(towerInstance);
-                }
+                // Tower platzieren
+                var tower = TowerScene.Instantiate() as Node2D;
+                tower.GlobalPosition = GetGlobalMousePosition();
+                GetTree().Root.AddChild(tower);
+
+                MoneyManagment.Instance.Spend(TowerCost);
+            }
+            else
+            {
+                GD.Print("Nicht genug Geld!");
             }
         }
     }
