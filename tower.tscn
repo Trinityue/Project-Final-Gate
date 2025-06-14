@@ -8,13 +8,14 @@
 size = Vector2(54, 54)
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("Spawner")]
+position = Vector2(1, 0)
 script = ExtResource("1_stebd")
 BulletScene = ExtResource("2_stebd")
 Spawner = NodePath("Tower_Spawner")
-bps = 10.0
+bps = 100.0
 MinSpeed = 500.0
 MaxSpeed = 500.0
-AttackRange = 1e+06
+AttackRange = 150.0
 
 [node name="Tower_GFX" type="Sprite2D" parent="."]
 texture = ExtResource("1_k1sas")
