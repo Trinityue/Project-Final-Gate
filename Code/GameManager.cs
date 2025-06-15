@@ -6,6 +6,8 @@ public partial class GameManager : Node2D
 {
     [Export] public PackedScene TowerScene;
     [Export] public int TowerCost = 50;
+    [Export] public float Player_Health = 100f;
+
 
     public override void _Input(InputEvent @event)
     {
@@ -26,4 +28,17 @@ public partial class GameManager : Node2D
             }
         }
     }
-}
+
+
+
+    public override void _Process(double delta)
+    {
+        GD.Print($"Current Player Health: {Player_Health}");
+        if (Player_Health <= 0)
+        {
+            GD.Print("Game Over! Player has no health left.");
+            GetTree().Quit(); // Beendet das Spiel
+        }
+    }
+
+} 
