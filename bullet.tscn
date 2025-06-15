@@ -9,7 +9,8 @@ size = Vector2(400, 201)
 [node name="Bullet" type="Node2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_v8qja")
-Damage = 15.0
+Speed = 5000.0
+Damage = 40.0
 
 [node name="Bullet" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, 0)
