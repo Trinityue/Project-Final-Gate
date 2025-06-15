@@ -37,7 +37,7 @@ public partial class EnemySpawner : Node2D
         {
             enemy.Path = Path;
             enemy.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
-            GetTree().Root.AddChild(enemy);
+            AddChild(enemy);
         }
     }
 }
