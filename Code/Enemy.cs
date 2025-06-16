@@ -15,9 +15,9 @@ public partial class Enemy : Node2D
 
     public override void _Ready()
     {
-        // PathFollow2D erzeugen und an den Pfad hängen
-        AddToGroup("Enemies"); // Enemy zur Gruppe "Enemies" hinzufügen
+        AddToGroup("Enemies");
         pathFollow = new PathFollow2D();
+        pathFollow.Loop = false; // <<< Das verhindert das Zurückspringen!
         if (Path != null)
         {
             Path.AddChild(pathFollow);
@@ -39,16 +39,11 @@ public partial class Enemy : Node2D
         // ich lass das als placeholder drinne 
         if (pathFollow.ProgressRatio >= 1.0f)
         {
-            var gameManager = GetNode<GameManager>("/root/Node2D/Game_Manager");
+            var gameManager = GetNode<GameManager>("/root/Node2D/GameManager");
             GD.Print("Enemy end");
             if (gameManager != null)
             {
                 gameManager.Player_Health -= Damage;
-                GD.Print($"Enemy reached the end! Player Health: {gameManager.Player_Health}");
-                if (gameManager.Player_Health <= 0)
-                {
-                    GetTree().Quit();
-                }
             }
             // ende placeholder
             QueueFree();

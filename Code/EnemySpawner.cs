@@ -32,6 +32,8 @@ public partial class EnemySpawner : Node2D
         if (enemyScene == null || Path == null)
             return;
 
+        spawn_rate = 1f / eps; 
+
         var enemyInstance = enemyScene.Instantiate();
         if (enemyInstance is Enemy enemy)
         {

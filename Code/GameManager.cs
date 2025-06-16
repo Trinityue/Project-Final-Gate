@@ -31,8 +31,12 @@ public partial class GameManager : Node2D
 
 
     // alles hier ist nur debbuging maybe ist hier auch n fehler sollte aber nicht 
-    public override void _Process(double delta) 
+    public override void _Process(double delta)
     {
         GD.Print($"Player Health: {Player_Health}");
+        if (Player_Health <= 0)
+        {
+            GetTree().ChangeSceneToFile("res://Game-Over_Screen.tscn"); // Pfad ggf. anpassen!
+        }
     } 
 }
