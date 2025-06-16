@@ -43,7 +43,22 @@ public partial class Enemy : Node2D
             GD.Print("Enemy end");
             if (gameManager != null)
             {
-                gameManager.Player_Health -= Damage;
+                if (gameManager.Player_Health / gameManager.Player_Max_Health <= 0.25f)
+                {
+                    gameManager.Player_Health -= Damage / 8;
+                }
+                else if (gameManager.Player_Health / gameManager.Player_Max_Health <= 0.5f)
+                {
+                    gameManager.Player_Health -= Damage / 4;
+                }
+                else if (gameManager.Player_Health / gameManager.Player_Max_Health <= 0.75f)
+                {
+                    gameManager.Player_Health -= Damage / 2; ;
+                }
+                else if (gameManager.Player_Health / gameManager.Player_Max_Health <= 1.0f)
+                {
+                    gameManager.Player_Health -= Damage;
+                }
             }
             // ende placeholder
             QueueFree();

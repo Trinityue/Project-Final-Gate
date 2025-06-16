@@ -7,6 +7,7 @@ public partial class GameManager : Node2D
     [Export] public PackedScene TowerScene;
     [Export] public int TowerCost = 50;
     [Export] public float Player_Health = 100f;
+    [Export] public float Player_Max_Health = 100f; 
 
 
     public override void _Input(InputEvent @event)

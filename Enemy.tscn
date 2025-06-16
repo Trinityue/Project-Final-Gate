@@ -11,6 +11,7 @@ position = Vector2(476, 321)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_4gyqm")
 Speed = 300.0
+Money_Given = 10.0
 metadata/_edit_horizontal_guides_ = [349.0]
 
 [node name="Enemy_GFX" type="Sprite2D" parent="."]
