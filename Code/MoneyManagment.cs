@@ -27,7 +27,7 @@ public partial class MoneyManagment : Node2D
     {
         GD.Print("Process läuft"); // Debug-Ausgabe
         Money += MoneyPerSecond * (float)delta;
-        var label = GetNode<Label>("../MoneyLabel");
+        var label = GetNode<Label>("/root/Node2D/MoneyManagment/MoneyLabel");
         label.Text = $"Geld: {Money:0.00}";
 
     }
