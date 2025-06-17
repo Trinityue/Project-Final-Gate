@@ -1,22 +1,35 @@
 using Godot;
 using System;
+using System.ComponentModel;
+using System.Diagnostics;
 
-
-public partial class Enemy : Node2D
+public partial class EnemyIi : Node2D
 {
-    [Export] public float Speed;     public Path2D Path; // Wird vom Spawner gesetzt
+    [Export] public float Speed = 100f; // Geschwindigkeit des Enemies
+    public Path2D Path; // Wird vom Spawner gesetzt
     private PathFollow2D pathFollow; // PathFollow2D für die Bewegung des Enemies
 
     [Export] public float Health = 100f; // Lebenspunkte
     [Export] public float MaxHealth = 100f; // Maximale Lebenspunkte 
     [Export] public float Damage = 10f; // Schaden, den dieser Enemy verursacht
     [Export] public float Money_Given = 1.0f; // Geld, das der Spieler erhält, wenn dieser Enemy besiegt wird
+    [Export] public float Healing = 10f; // Heilung 
+    private Stopwatch stopwatch = new Stopwatch();
+
+
 
     public override void _Ready()
     {
+        var timer = new Timer();
+        timer.WaitTime = 5.0f;      // Timer läuft 5 Sekunden
+        timer.OneShot = true;       // Timer läuft nur einmal (kein Loop)
+        AddChild(timer);            // Timer als Kindnode hinzufügen
+        timer.Timeout += OnTimerTimeout; // Event/Signal verbinden
+        timer.Start();              // Timer starten
+
         AddToGroup("Enemies");
         pathFollow = new PathFollow2D();
-        pathFollow.Loop = false; // <<< Das verhindert das Zurückspringen!
+        pathFollow.Loop = false;
         if (Path != null)
         {
             Path.AddChild(pathFollow);
@@ -33,9 +46,6 @@ public partial class Enemy : Node2D
         pathFollow.Progress += Speed * (float)delta;
         GlobalPosition = pathFollow.GlobalPosition;
 
-        // Das problem ist hier das er in der ersten zeile beim if nicht werkennt das der enemy am ende des Path ist. 
-        //  Idk why weil er ja verschwindet
-        // ich lass das als placeholder drinne 
         if (pathFollow.ProgressRatio >= 1.0f)
         {
             var gameManager = GetNode<GameManager>("/root/Node2D/GameManager");
@@ -59,7 +69,6 @@ public partial class Enemy : Node2D
                     gameManager.Player_Health -= Damage;
                 }
             }
-            // ende placeholder
             QueueFree();
         }
     }
@@ -75,7 +84,26 @@ public partial class Enemy : Node2D
                 moneyManagment.Money += Money_Given; // Geld hinzufügen
             }
             GD.Print($"Enemy defeated! Money given: {Money_Given}");
-            QueueFree(); 
+            QueueFree();
         }
     }
+        private void OnTimerTimeout()
+    {
+        GD.Print("Timer done! Healing precceedign");
+        if (Health < MaxHealth)
+        {
+            Health += Healing;
+        }
+        else if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else if (Health == MaxHealth)
+        {
+        }
+
+        
+    }
 }
+
+

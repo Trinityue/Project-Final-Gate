@@ -13,8 +13,8 @@ script = ExtResource("1_stebd")
 BulletScene = ExtResource("2_stebd")
 Spawner = NodePath("Tower_Spawner")
 bps = 5.0
-MinSpeed = 800.0
-MaxSpeed = 800.0
+MinSpeed = 1000.0
+MaxSpeed = 1000.0
 AttackRange = 150.0
 
 [node name="Tower_GFX" type="Sprite2D" parent="."]

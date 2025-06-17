@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemySpawner : Node2D
+public partial class SpawnerIi : Node2D
 {
     [Export] public PackedScene enemyScene;
     [Export] public Path2D Path;
@@ -35,11 +35,11 @@ public partial class EnemySpawner : Node2D
         spawn_rate = 1f / eps; 
 
         var enemyInstance = enemyScene.Instantiate();
-        if (enemyInstance is EnemyIi enemyII)
+        if (enemyInstance is Enemy enemy)
         {
-            enemyII.Path = Path;
-            enemyII.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
-            AddChild(enemyII);
+            enemy.Path = Path;
+            enemy.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+            AddChild(enemy);
         }
         
     }

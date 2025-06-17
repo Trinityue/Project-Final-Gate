@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=10 format=4 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://b8ltrkm78a6tx" path="res://Code/GameManager.cs" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://cnkslcoxcla51" path="res://Enemy_II.tscn" id="6_d21ai"]
 [ext_resource type="PackedScene" uid="uid://tnpgx4wfxn6c" path="res://money_managment.tscn" id="6_kdubu"]
+[ext_resource type="Script" uid="uid://cpc1mf5idtx8i" path="res://Code/SpawnerIi.cs" id="7_rj586"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
@@ -29,6 +31,7 @@ tile_set = ExtResource("1_0e48y")
 rendering_quadrant_size = 64
 
 [node name="Path2D" type="Path2D" parent="TileMapLayer/TileMapLayer2"]
+position = Vector2(2.38419e-07, 3.83372e-11)
 curve = SubResource("Curve2D_kdubu")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="TileMapLayer/TileMapLayer2/Path2D"]
@@ -36,22 +39,24 @@ position = Vector2(99.9921, 49.0161)
 rotation = 0.000160792
 
 [node name="GameManager" type="Node2D" parent="."]
-position = Vector2(-2.99984, -1.00048)
+position = Vector2(2.38419e-07, 0)
 script = ExtResource("1_d21ai")
 TowerScene = ExtResource("5_kdubu")
 
-[node name="World_Logic" type="Node2D" parent="."]
-position = Vector2(-1, -0.000160813)
-
 [node name="MoneyManagment" parent="." instance=ExtResource("6_kdubu")]
-position = Vector2(-0.999839, -1.00016)
 Money = 100.0
 
 [node name="Enemy2" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
-position = Vector2(53.9955, 28.0087)
+position = Vector2(99.9921, 49.0161)
 script = ExtResource("2_q6r6c")
+enemyScene = ExtResource("6_d21ai")
+Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
+MinSpeed = 100.0
+MaxSpeed = 100.0
+
+[node name="Spawner_II" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
+script = ExtResource("7_rj586")
 enemyScene = ExtResource("3_0hol4")
 Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
-eps = 20.0
-MinSpeed = 500.0
-MaxSpeed = 500.0
+MinSpeed = 200.0
+MaxSpeed = 200.0

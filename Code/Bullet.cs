@@ -4,9 +4,10 @@ using System;
 public partial class Bullet : Node2D
 {
     [Export] public float Speed = 300f;
-    [Export] public float Damage = 10f; // damage
-    public Enemy target;
-    public Enemy Target { get; set; }
+    [Export] public float Damage = 10f;
+    public Node2D target; // Kann Enemy oder EnemyII sein
+
+    public Node2D Target { get; set; }
 
     public override void _Ready()
     {
@@ -30,18 +31,22 @@ public partial class Bullet : Node2D
         // Verschwinde, wenn Ziel erreicht
         if (GlobalPosition.DistanceTo(target.GlobalPosition) < 10f)
         {
-            target.TakeDamage(Damage); // Damage zufügen
-            QueueFree(); // Bullet verschwindet
+            // Versuche TakeDamage aufzurufen, falls vorhanden
+            var method = target.GetType().GetMethod("TakeDamage");
+            if (method != null)
+                method.Invoke(target, new object[] { Damage });
+
+            QueueFree();
         }
     }
 
-    private Enemy GetNearestEnemy()
+    private Node2D GetNearestEnemy()
     {
-        Enemy nearest = null;
+        Node2D nearest = null;
         float nearestDist = float.MaxValue;
         foreach (var node in GetTree().GetNodesInGroup("Enemies"))
         {
-            if (node is Enemy e)
+            if (node is Node2D e)
             {
                 float dist = GlobalPosition.DistanceTo(e.GlobalPosition);
                 if (dist < nearestDist)
