@@ -46,6 +46,13 @@ TowerScene = ExtResource("5_kdubu")
 [node name="MoneyManagment" parent="." instance=ExtResource("6_kdubu")]
 Money = 100.0
 
+[node name="MoneyLabel" type="Label" parent="MoneyManagment"]
+top_level = true
+offset_left = 56.0
+offset_top = 114.0
+offset_right = 158.0
+offset_bottom = 150.0
+
 [node name="Enemy2" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
 position = Vector2(99.9921, 49.0161)
 script = ExtResource("2_q6r6c")
