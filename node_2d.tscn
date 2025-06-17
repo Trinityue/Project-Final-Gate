@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=11 format=4 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://b8ltrkm78a6tx" path="res://Code/GameManager.cs" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
+[ext_resource type="Script" uid="uid://cc53ibyghktdp" path="res://Code/MoneyLabel.cs" id="5_4d7sh"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
 [ext_resource type="PackedScene" uid="uid://cnkslcoxcla51" path="res://Enemy_II.tscn" id="6_d21ai"]
 [ext_resource type="PackedScene" uid="uid://tnpgx4wfxn6c" path="res://money_managment.tscn" id="6_kdubu"]
@@ -48,10 +49,13 @@ Money = 100.0
 
 [node name="MoneyLabel" type="Label" parent="MoneyManagment"]
 top_level = true
+anchors_preset = -1
+anchor_right = 0.029
 offset_left = 56.0
 offset_top = 114.0
-offset_right = 158.0
+offset_right = 102.32
 offset_bottom = 150.0
+script = ExtResource("5_4d7sh")
 
 [node name="Enemy2" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
 position = Vector2(99.9921, 49.0161)
