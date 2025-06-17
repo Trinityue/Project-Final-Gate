@@ -6,7 +6,7 @@ public partial class MoneyManagment : Node2D
     [Export] public float Money { get; set; } = 0.0f;
     [Export] public float MoneyPerSecond { get; set; } = 0.0f;
 
-        public static MoneyManagment Instance { get; private set; }
+    public static MoneyManagment Instance { get; private set; }
 
     public override void _Ready()
     {
@@ -25,8 +25,10 @@ public partial class MoneyManagment : Node2D
     }
     public override void _Process(double delta)
     {
+        GD.Print("Process läuft"); // Debug-Ausgabe
         Money += MoneyPerSecond * (float)delta;
-        GD.Print($"Current Money: {Money}");
+        var label = GetNode<Label>("../MoneyLabel");
+        label.Text = $"Geld: {Money:0.00}";
 
     }
 

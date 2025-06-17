@@ -7,7 +7,7 @@ public partial class GameManager : Node2D
     [Export] public PackedScene TowerScene;
     [Export] public int TowerCost = 50;
     [Export] public float Player_Health = 100f;
-    [Export] public float Player_Max_Health = 100f; 
+    [Export] public float Player_Max_Health = 100f;
 
 
     public override void _Input(InputEvent @event)
@@ -34,10 +34,10 @@ public partial class GameManager : Node2D
     // alles hier ist nur debbuging maybe ist hier auch n fehler sollte aber nicht 
     public override void _Process(double delta)
     {
-        GD.Print($"Player Health: {Player_Health}");
+        //GD.Print($"Player Health: {Player_Health}");
         if (Player_Health <= 0)
         {
             GetTree().ChangeSceneToFile("res://Game-Over_Screen.tscn"); // Pfad ggf. anpassen!
         }
-    } 
+    }
 }
