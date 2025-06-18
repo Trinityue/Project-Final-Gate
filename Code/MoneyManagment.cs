@@ -25,7 +25,6 @@ public partial class MoneyManagment : Node2D
     }
     public override void _Process(double delta)
     {
-        GD.Print("Process läuft"); // Debug-Ausgabe
         Money += MoneyPerSecond * (float)delta;
         var label = GetNode<Label>("/root/Node2D/MoneyManagment/MoneyLabel");
         label.Text = $"Geld: {Money:0.00}";
