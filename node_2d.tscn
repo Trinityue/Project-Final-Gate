@@ -13,9 +13,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 99.9921, 49.0161, 0, 0, 0, 0, 1813.99, 49.2917, 0, 0, 0, 0, 1796.84, 1024.29, 0, 0, 0, 0, 1203.84, 1023.19, 0, 0, 0, 0, 1200.9, 625.193, 0, 0, 0, 0, 596.9, 621.096, 0, 0, 0, 0, 583.836, 1021.09, 0, 0, 0, 0, 99.8355, 1023.02)
+"points": PackedVector2Array(0, 0, 0, 0, 69.08, 40.766, 0, 0, 0, 0, 858.072, 30.9517, 0, 0, 0, 0, 1787.24, 31.1, 0, 0, 0, 0, 1796.84, 1024.29, 0, 0, 0, 0, 1203.84, 1023.19, 0, 0, 0, 0, 1200.9, 625.193, 0, 0, 0, 0, 579.352, 616.545, 0, 0, 0, 0, 583.836, 1021.09, 0, 0, 0, 0, 99.8355, 1023.02)
 }
-point_count = 8
+point_count = 9
 
 [node name="Node2D" type="Node2D"]
 rotation = -0.000160798
@@ -33,12 +33,35 @@ tile_set = ExtResource("1_0e48y")
 rendering_quadrant_size = 64
 
 [node name="Path2D" type="Path2D" parent="TileMapLayer/TileMapLayer2"]
-position = Vector2(2.38419e-07, 3.83372e-11)
+position = Vector2(12.9983, 11.0021)
+scale = Vector2(0.998745, 1.00601)
 curve = SubResource("Curve2D_kdubu")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="TileMapLayer/TileMapLayer2/Path2D"]
-position = Vector2(99.9921, 49.0161)
-rotation = 0.000160792
+position = Vector2(69.08, 40.766)
+rotation = -0.0124384
+
+[node name="NoBuildZone" type="Area2D" parent="TileMapLayer/TileMapLayer2"]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
+texture_filter = 1
+position = Vector2(214.969, 194.035)
+polygon = PackedVector2Array(-1.52588e-05, 0, -0.00242615, 15, -31.0024, 14.995, -31.023, 142.995, -2.02301, 143, -2.02559, 159, 27.9746, 158.004, 32.9746, 158.005, 32.9723, 172.005, 59.9723, 172.01, 64.9723, 172.01, 64.9694, 190.01, 94.9694, 190.015, 94.9668, 206.015, 127.967, 206.021, 127.964, 223.021, 159.964, 223.026, 159.962, 239.026, 224.962, 239.036, 224.959, 254.036, 269.959, 254.043, 271.959, 254.044, 271.957, 270.044, 287.957, 270.046, 287.954, 287.046, 656.954, 285.106, 656.952, 301.106, 785.951, 302.126, 785.954, 286.126, 960.954, 285.155, 960.952, 301.155, 1233.95, 301.198, 1233.96, 270.198, 1247.96, 270.201, 1247.97, 210.201, 1247.97, 207.201, 1265.97, 207.204, 1265.98, 129.204, 1204.98, 129.194, 1204.98, 99.1938, 1134.98, 99.1825, 1134.98, 114.182, 996.981, 116.16, 996.984, 98.1603, 885.984, 98.1425, 882.984, 98.142, 882.987, 79.142, 867.987, 79.1396, 867.99, 64.1396, 835.99, 64.1344, 835.992, 48.1344, 770.992, 48.124, 770.995, 34.124, 753.995, 34.1212, 753.997, 18.1212, 660.997, 18.1063, 661, 2.10628, 609, 2.09792, 609.002, -14.9021, 501.002, -14.9194, 501.005, -29.9194, 483.005, -29.9223, 483.007, -45.9223, 449.007, -45.9278, 449.01, -63.9278, 304.01, -62.9511, 304.007, -45.9511, 257.007, -45.9587, 257.005, -30.9587, 194.005, -30.9688, 194.002, -14.9688, 130.002, -14.9791, 130, 0.0209045)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
+polygon = PackedVector2Array(1671.98, 155.269, 1673.94, 400.269, 1730.94, 401.278, 1732.98, 155.279)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
+polygon = PackedVector2Array(1319.87, 837.212, 1416.87, 837.228, 1416.85, 925.228, 1319.85, 925.212)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
+polygon = PackedVector2Array(438.85, 935.071, 536.85, 935.086, 536.844, 970.086, 438.844, 969.071)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
+position = Vector2(-0.0012207, -75.4837)
+scale = Vector2(1, 1.08297)
+polygon = PackedVector2Array(1701.86, 872.274, 1737.86, 872.279, 1737.84, 968.279, 1701.84, 968.274)
 
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2(2.38419e-07, 0)
@@ -46,8 +69,10 @@ script = ExtResource("1_d21ai")
 TowerScene = ExtResource("5_kdubu")
 
 [node name="GameLabel" type="Label" parent="GameManager"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 17.9989
+offset_top = 7.00289
+offset_right = 57.9989
+offset_bottom = 30.0029
 script = ExtResource("4_ir8iy")
 
 [node name="MoneyManagment" parent="." instance=ExtResource("6_kdubu")]
@@ -68,6 +93,7 @@ position = Vector2(99.9921, 49.0161)
 script = ExtResource("2_q6r6c")
 enemyScene = ExtResource("6_d21ai")
 Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
+eps = 0.25
 MinSpeed = 100.0
 MaxSpeed = 100.0
 
@@ -77,3 +103,6 @@ enemyScene = ExtResource("3_0hol4")
 Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
 MinSpeed = 200.0
 MaxSpeed = 200.0
+
+[connection signal="mouse_entered" from="TileMapLayer/TileMapLayer2/NoBuildZone" to="GameManager" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="TileMapLayer/TileMapLayer2/NoBuildZone" to="GameManager" method="OnMouseExited"]

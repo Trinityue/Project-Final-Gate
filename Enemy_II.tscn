@@ -10,8 +10,11 @@ size = Vector2(1005, 1005)
 position = Vector2(3258, 2330)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_u271w")
+Health = 150.0
+MaxHealth = 150.0
 Damage = 5.0
 Money_Given = 3.0
+Healing = 5.0
 
 [node name="EnemyIi" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)

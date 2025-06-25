@@ -63,6 +63,7 @@ public partial class Tower : Node2D
             return;
 
         var bulletInstance = BulletScene.Instantiate();
+        GD.Print(bulletInstance.GetType().Name); // Sollte "Bullet" ausgeben!
         if (bulletInstance is Bullet bullet)
         {
             bullet.GlobalPosition = Spawner.GlobalPosition;
