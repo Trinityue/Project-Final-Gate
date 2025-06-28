@@ -7,7 +7,6 @@
 size = Vector2(1005, 1005)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(3258, 2330)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_u271w")
 Health = 150.0
@@ -20,7 +19,8 @@ Healing = 5.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_rst77")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 2)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_u271w")

@@ -3,18 +3,33 @@ using System;
 
 public partial class GameManager : Node2D
 {
-    [Export] public PackedScene TowerScene;
+    [Export] public PackedScene Tower1Scene;
+    [Export] public PackedScene Tower2Scene;
+
     [Export] public int TowerCost = 50;
     [Export] public float Player_Health = 100f;
     [Export] public float Player_Max_Health = 100f;
 
     private bool mouseInNoBuildZone = false;
 
+    private float towerchoiche = 1f;
+
     public override void _Process(double delta)
     {
         if (Player_Health <= 0)
         {
             GetTree().ChangeSceneToFile("res://Game-Over_Screen.tscn");
+        }
+        if (Input.IsActionJustPressed("ui_1"))
+        {
+            towerchoiche = 1f;
+            GD.Print("Turm 1 ausgewählt");
+
+        }
+        else if (Input.IsActionJustPressed("ui_2"))
+        {
+            towerchoiche = 2f;
+            GD.Print("Turm 2 ausgewählt");
         }
     }
 
@@ -28,9 +43,17 @@ public partial class GameManager : Node2D
                 return;
             }
 
-            if (MoneyManagment.Instance.CanAfford(TowerCost))
+            if (MoneyManagment.Instance.CanAfford(TowerCost)&& towerchoiche == 1f && Tower1Scene != null)
             {
-                var tower = TowerScene.Instantiate() as Node2D;
+                var tower = Tower1Scene.Instantiate() as Node2D;
+                tower.GlobalPosition = GetGlobalMousePosition();
+                GetTree().Root.AddChild(tower);
+
+                MoneyManagment.Instance.Spend(TowerCost);
+            }
+            else if (MoneyManagment.Instance.CanAfford(TowerCost) && towerchoiche == 2f && Tower2Scene != null)
+            {
+                var tower = Tower2Scene.Instantiate() as Node2D;
                 tower.GlobalPosition = GetGlobalMousePosition();
                 GetTree().Root.AddChild(tower);
 

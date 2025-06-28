@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://raxm5ldhigvh"]
+
+[ext_resource type="Script" uid="uid://rpihaexm5dqm" path="res://Code/InfernoTower.cs" id="1_sh5yq"]
+[ext_resource type="PackedScene" uid="uid://dpivechu4fypg" path="res://bullet.tscn" id="2_ndxsf"]
+[ext_resource type="Texture2D" uid="uid://bf0algkxwhebg" path="res://Inferno_Tower.png" id="2_tmni7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la12i"]
+size = Vector2(128, 120)
+
+[node name="Inferno_Tower" type="Node2D" node_paths=PackedStringArray("Spawner")]
+script = ExtResource("1_sh5yq")
+BulletScene = ExtResource("2_ndxsf")
+Spawner = NodePath("Infero_Spawner_Debugging")
+
+[node name="Inferno_Tower_GFX" type="Sprite2D" parent="."]
+position = Vector2(0, 2.38419e-07)
+scale = Vector2(0.128, 0.12)
+texture = ExtResource("2_tmni7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_la12i")
+
+[node name="Infero_Spawner_Debugging" type="Node2D" parent="."]

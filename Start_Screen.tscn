@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkput3ddcivrd"]
+
+[ext_resource type="Script" uid="uid://bwd1qxu35i6oq" path="res://Code/Button_Start_Screen.cs" id="1_348ot"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(344, 299)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 438.0
+offset_top = 122.0
+offset_right = 771.0
+offset_bottom = 274.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_348ot")
+
+[connection signal="pressed" from="Button" to="Button" method="pressed"]

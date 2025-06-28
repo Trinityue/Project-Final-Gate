@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Runtime;
 
-public partial class Tower : Node2D
+public partial class InfernoTower : Node2D
 {
     [Export] public PackedScene BulletScene;
     [Export] public Node2D Spawner;

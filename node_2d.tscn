@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=13 format=4 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://b8ltrkm78a6tx" path="res://Code/GameManager.cs" id="1_d21ai"]
 [ext_resource type="Script" uid="uid://d8lxftnjvpoq" path="res://Code/EnemySpawner.cs" id="2_q6r6c"]
 [ext_resource type="PackedScene" uid="uid://cxmlwu47fpjoo" path="res://Enemy.tscn" id="3_0hol4"]
+[ext_resource type="PackedScene" uid="uid://raxm5ldhigvh" path="res://Inferno_Tower.tscn" id="4_hqns4"]
 [ext_resource type="Script" uid="uid://u1j5cu056jsd" path="res://Code/GameLabel.cs" id="4_ir8iy"]
 [ext_resource type="Script" uid="uid://cc53ibyghktdp" path="res://Code/MoneyLabel.cs" id="5_4d7sh"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
@@ -66,7 +67,8 @@ polygon = PackedVector2Array(1701.86, 872.274, 1737.86, 872.279, 1737.84, 968.27
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2(2.38419e-07, 0)
 script = ExtResource("1_d21ai")
-TowerScene = ExtResource("5_kdubu")
+Tower1Scene = ExtResource("5_kdubu")
+Tower2Scene = ExtResource("4_hqns4")
 
 [node name="GameLabel" type="Label" parent="GameManager"]
 offset_left = 17.9989
