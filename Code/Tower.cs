@@ -28,15 +28,6 @@ public partial class Tower : Node2D
             TryShootAtNearestEnemy();
             timeUntilSpawn = 0f;
         }
-
-        // Enemies im Umkreis hervorheben
-        foreach (var enemy in GetTree().GetNodesInGroup("Enemies"))
-        {
-            if (enemy is Enemy e && GlobalPosition.DistanceTo(e.GlobalPosition) < AttackRange)
-            {
-                // Beispiel: e.FlashColor(Colors.Red, 0.2f);
-            }
-        }
     }
 
     private void TryShootAtNearestEnemy()
@@ -44,17 +35,17 @@ public partial class Tower : Node2D
         if (Spawner == null || BulletScene == null)
             return;
 
-        Enemy nearestEnemy = null;
+        Node2D nearestEnemy = null;
         float nearestDist = float.MaxValue;
         foreach (var node in GetTree().GetNodesInGroup("Enemies"))
         {
-            if (node is Enemy e)
+            if (node is Node2D enemyNode)
             {
-                float dist = GlobalPosition.DistanceTo(e.GlobalPosition);
-                if (dist < nearestDist && dist <= AttackRange) // Nur Enemys in Reichweite!
+                float dist = GlobalPosition.DistanceTo(enemyNode.GlobalPosition);
+                if (dist < nearestDist && dist <= AttackRange)
                 {
                     nearestDist = dist;
-                    nearestEnemy = e;
+                    nearestEnemy = enemyNode;
                 }
             }
         }
