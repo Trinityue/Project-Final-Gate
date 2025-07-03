@@ -1,17 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkput3ddcivrd"]
+[gd_scene load_steps=5 format=3 uid="uid://bkput3ddcivrd"]
 
-[ext_resource type="Script" uid="uid://bwd1qxu35i6oq" path="res://Code/Button_Start_Screen.cs" id="1_348ot"]
+[ext_resource type="Texture2D" uid="uid://de1kvajixk7f2" path="res://New Piskel-1.png (1)-1.png.png" id="2_q5oj5"]
+[ext_resource type="Texture2D" uid="uid://myodc0msd2yp" path="res://New Piskel-1.png (1)-2.png.png" id="3_y7cqw"]
+[ext_resource type="Texture2D" uid="uid://b5spyr0leiht7" path="res://New Piskel-1.png (1)-3.png.png" id="4_4og4g"]
+[ext_resource type="Script" uid="uid://bfapalegcs4a6" path="res://TextureButton.cs" id="5_dj0k1"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(344, 299)
 
-[node name="Button" type="Button" parent="."]
-offset_left = 438.0
-offset_top = 122.0
-offset_right = 771.0
-offset_bottom = 274.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("1_348ot")
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 349.0
+offset_top = 75.0
+offset_right = 861.0
+offset_bottom = 331.0
+texture_normal = ExtResource("2_q5oj5")
+texture_pressed = ExtResource("3_y7cqw")
+texture_hover = ExtResource("4_4og4g")
+script = ExtResource("5_dj0k1")
 
-[connection signal="pressed" from="Button" to="Button" method="pressed"]
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]
