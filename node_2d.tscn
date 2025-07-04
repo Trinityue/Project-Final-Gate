@@ -94,17 +94,17 @@ script = ExtResource("5_4d7sh")
 position = Vector2(99.9921, 49.0161)
 script = ExtResource("2_q6r6c")
 enemyScene = ExtResource("6_d21ai")
-Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
 eps = 0.25
 MinSpeed = 100.0
 MaxSpeed = 100.0
+Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
 
 [node name="Spawner_II" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
 script = ExtResource("7_rj586")
 enemyScene = ExtResource("3_0hol4")
-Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
 MinSpeed = 200.0
 MaxSpeed = 200.0
+Path = NodePath("../TileMapLayer/TileMapLayer2/Path2D")
 
 [connection signal="mouse_entered" from="TileMapLayer/TileMapLayer2/NoBuildZone" to="GameManager" method="OnMouseEntered"]
 [connection signal="mouse_exited" from="TileMapLayer/TileMapLayer2/NoBuildZone" to="GameManager" method="OnMouseExited"]
