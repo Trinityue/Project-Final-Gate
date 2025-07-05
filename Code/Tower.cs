@@ -53,6 +53,14 @@ public partial class Tower : Node2D
         if (nearestEnemy == null)
             return;
 
+        // Turm auf den nächsten Gegner ausrichten
+        LookAt(nearestEnemy.GlobalPosition);
+
+        // Animation abspielen, wenn ein Gegner in Reichweite ist
+        var animPlayer = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+        if (animPlayer != null && !animPlayer.IsPlaying())
+            animPlayer.Play("Attack");
+
         var bulletInstance = BulletScene.Instantiate();
         if (bulletInstance is Bullet bullet)
         {

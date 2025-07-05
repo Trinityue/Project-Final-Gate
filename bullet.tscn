@@ -1,21 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpivechu4fypg"]
 
-[ext_resource type="Texture2D" uid="uid://2g815nf6pssc" path="res://Bullet.png" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://b6sijo7rt5dys" path="res://Code/Bullet.cs" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://d0xtgbxbv8wdk" path="res://Arrow_bullet.png.png" id="3_t4vbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_srl1b"]
-size = Vector2(400, 201)
+size = Vector2(500, 1275)
 
 [node name="Bullet" type="Node2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_v8qja")
 
-[node name="Bullet_GFX" type="Sprite2D" parent="."]
-position = Vector2(4.76837e-07, 0)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_v7oki")
+[node name="ArrowBullet_png" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, -1.52588e-05)
+scale = Vector2(0.689453, 0.90918)
+texture = ExtResource("3_t4vbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.96046e-07, 0)
+position = Vector2(-3.8147e-06, -4.99999)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_srl1b")
