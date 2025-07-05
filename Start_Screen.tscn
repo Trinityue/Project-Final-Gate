@@ -1,21 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkput3ddcivrd"]
+[gd_scene load_steps=12 format=3 uid="uid://bkput3ddcivrd"]
 
+[ext_resource type="Texture2D" uid="uid://rh3cftbpepfk" path="res://Background_Game.png" id="1_q5oj5"]
 [ext_resource type="Texture2D" uid="uid://de1kvajixk7f2" path="res://New Piskel-1.png (1)-1.png.png" id="2_q5oj5"]
 [ext_resource type="Texture2D" uid="uid://myodc0msd2yp" path="res://New Piskel-1.png (1)-2.png.png" id="3_y7cqw"]
 [ext_resource type="Texture2D" uid="uid://b5spyr0leiht7" path="res://New Piskel-1.png (1)-3.png.png" id="4_4og4g"]
 [ext_resource type="Script" uid="uid://bfapalegcs4a6" path="res://TextureButton.cs" id="5_dj0k1"]
+[ext_resource type="Texture2D" uid="uid://ddchqkmborbx4" path="res://Settings_Button_Normal.png.png" id="6_dj0k1"]
+[ext_resource type="AudioStream" uid="uid://bwcbahovdeot3" path="res://button-click-289742 (1).mp3" id="6_fysvg"]
+[ext_resource type="Script" uid="uid://dwxnn7vcmtpwa" path="res://Buttonclicksound.cs" id="7_fwop1"]
+[ext_resource type="Texture2D" uid="uid://bhk47pka238l0" path="res://Settings_Button_Pressed.png.png" id="7_huokf"]
+[ext_resource type="Texture2D" uid="uid://bbgkaskwk1ejm" path="res://Settings_Button_Hover.png.png" id="8_fysvg"]
+[ext_resource type="Script" uid="uid://g4wywmuapul5" path="res://SettingsButton.cs" id="9_huokf"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(344, 299)
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="BackgroundGame" type="Sprite2D" parent="."]
+position = Vector2(618, 244)
+scale = Vector2(1.11167, 1.1125)
+texture = ExtResource("1_q5oj5")
+
+[node name="StartButton" type="TextureButton" parent="."]
 offset_left = 349.0
-offset_top = 75.0
+offset_top = 135.0
 offset_right = 861.0
-offset_bottom = 331.0
+offset_bottom = 391.0
 texture_normal = ExtResource("2_q5oj5")
 texture_pressed = ExtResource("3_y7cqw")
 texture_hover = ExtResource("4_4og4g")
 script = ExtResource("5_dj0k1")
 
-[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]
+[node name="Buttonclicksound" type="AudioStreamPlayer2D" parent="StartButton"]
+position = Vector2(-349, -135)
+stream = ExtResource("6_fysvg")
+volume_db = 8.914
+script = ExtResource("7_fwop1")
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+offset_left = -294.0
+offset_top = 608.0
+offset_right = -166.0
+offset_bottom = 736.0
+texture_normal = ExtResource("6_dj0k1")
+texture_pressed = ExtResource("7_huokf")
+texture_hover = ExtResource("8_fysvg")
+script = ExtResource("9_huokf")
+
+[node name="Buttonclicksound2" type="AudioStreamPlayer2D" parent="SettingsButton"]
+position = Vector2(294, -608)
+stream = ExtResource("6_fysvg")
+
+[node name="MusicButton" type="TextureButton" parent="."]
+offset_left = -88.0
+offset_top = 119.0
+offset_right = -48.0
+offset_bottom = 159.0
+toggle_mode = true
+
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="pressed_Setting"]
