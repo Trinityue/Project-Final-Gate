@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c7ifkm12gdj6k"]
+[gd_scene load_steps=15 format=4 uid="uid://c7ifkm12gdj6k"]
 
 [ext_resource type="TileSet" uid="uid://5c8oyqo7tpix" path="res://Map_V_2.tres" id="1_0e48y"]
 [ext_resource type="Script" uid="uid://b8ltrkm78a6tx" path="res://Code/GameManager.cs" id="1_d21ai"]
@@ -8,9 +8,11 @@
 [ext_resource type="Script" uid="uid://u1j5cu056jsd" path="res://Code/GameLabel.cs" id="4_ir8iy"]
 [ext_resource type="Script" uid="uid://cc53ibyghktdp" path="res://Code/MoneyLabel.cs" id="5_4d7sh"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
+[ext_resource type="Texture2D" uid="uid://t6m5n07nqmwp" path="res://HealthPoints_UI.png" id="6_0h7mo"]
 [ext_resource type="PackedScene" uid="uid://cnkslcoxcla51" path="res://Enemy_II.tscn" id="6_d21ai"]
 [ext_resource type="PackedScene" uid="uid://tnpgx4wfxn6c" path="res://money_managment.tscn" id="6_kdubu"]
 [ext_resource type="Script" uid="uid://cpc1mf5idtx8i" path="res://Code/SpawnerIi.cs" id="7_rj586"]
+[ext_resource type="Texture2D" uid="uid://cb6yukhpxgx2i" path="res://Coin_UI.png.png" id="8_x0ka3"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
@@ -73,12 +75,18 @@ script = ExtResource("1_d21ai")
 Tower1Scene = ExtResource("5_kdubu")
 Tower2Scene = ExtResource("4_hqns4")
 
-[node name="GameLabel" type="Label" parent="GameManager"]
-offset_left = 17.9989
-offset_top = 7.00289
-offset_right = 57.9989
-offset_bottom = 30.0029
+[node name="HealthPointLabel" type="Label" parent="GameManager"]
+offset_left = 59.0
+offset_right = 193.0
+offset_bottom = 59.0
 script = ExtResource("4_ir8iy")
+
+[node name="TextureRect" type="TextureRect" parent="GameManager"]
+offset_left = 0.00096455
+offset_top = -6.0
+offset_right = 64.001
+offset_bottom = 58.0
+texture = ExtResource("6_0h7mo")
 
 [node name="MoneyManagment" parent="." instance=ExtResource("6_kdubu")]
 Money = 100.0
@@ -87,11 +95,20 @@ Money = 100.0
 top_level = true
 anchors_preset = -1
 anchor_right = 0.029
-offset_left = 86.0
-offset_top = 141.0
-offset_right = 132.32
-offset_bottom = 177.0
+offset_left = 55.0
+offset_top = 50.0
+offset_right = 141.32
+offset_bottom = 110.0
 script = ExtResource("5_4d7sh")
+
+[node name="TextureRect" type="TextureRect" parent="MoneyManagment"]
+offset_left = -0.00755908
+offset_top = 47.0098
+offset_right = 60.9924
+offset_bottom = 109.01
+texture = ExtResource("8_x0ka3")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Enemy2" type="Node2D" parent="." node_paths=PackedStringArray("Path")]
 position = Vector2(99.9921, 49.0161)

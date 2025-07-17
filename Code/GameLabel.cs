@@ -8,6 +8,7 @@ public partial class GameLabel : Label
     public override void _Ready()
     {
         gameManager = GetNode<GameManager>("/root/Node2D/GameManager");
+        AddThemeFontSizeOverride("font_size", 37); 
     }
 
     public override void _Process(double delta)

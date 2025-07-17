@@ -3,6 +3,8 @@ using System;
 
 public partial class Bullet : Node2D
 {
+    
+
     [Export] public float Speed = 300f;
     [Export] public float Damage = 10f;
     public Node2D target; // Kann Enemy oder EnemyII sein
@@ -26,6 +28,7 @@ public partial class Bullet : Node2D
         }
 
         Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
+        Rotation = (target.GlobalPosition - GlobalPosition).Angle(); // Bullet zeigt zum Ziel
         GlobalPosition += direction * Speed * (float)delta;
 
         // Verschwinde, wenn Ziel erreicht

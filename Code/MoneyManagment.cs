@@ -13,7 +13,6 @@ public partial class MoneyManagment : Node2D
         Instance = this;
     }
 
-
     public bool CanAfford(int cost)
     {
         return Money >= cost;
@@ -23,12 +22,23 @@ public partial class MoneyManagment : Node2D
     {
         Money -= cost;
     }
+
+    public void AddMoney(int amount)
+    {
+        Money += amount;
+        UpdateLabel();
+    }
+
+    public void UpdateLabel()
+    {
+        var label = GetNodeOrNull<Label>("/root/Node2D/MoneyManagment/MoneyLabel");
+        if (label != null)
+            label.Text = $"{Money:0}";
+    }
+
     public override void _Process(double delta)
     {
         Money += MoneyPerSecond * (float)delta;
-        var label = GetNode<Label>("/root/Node2D/MoneyManagment/MoneyLabel");
-        label.Text = $"Geld: {Money:0.00}";
-
+        UpdateLabel();
     }
-
 }

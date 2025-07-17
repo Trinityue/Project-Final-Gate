@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkput3ddcivrd"]
+[gd_scene load_steps=17 format=3 uid="uid://bkput3ddcivrd"]
 
 [ext_resource type="Texture2D" uid="uid://rh3cftbpepfk" path="res://Background_Game.png" id="1_q5oj5"]
 [ext_resource type="Texture2D" uid="uid://de1kvajixk7f2" path="res://New Piskel-1.png (1)-1.png.png" id="2_q5oj5"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://bhk47pka238l0" path="res://Settings_Button_Pressed.png.png" id="7_huokf"]
 [ext_resource type="Texture2D" uid="uid://bbgkaskwk1ejm" path="res://Settings_Button_Hover.png.png" id="8_fysvg"]
 [ext_resource type="Script" uid="uid://g4wywmuapul5" path="res://SettingsButton.cs" id="9_huokf"]
+[ext_resource type="Texture2D" uid="uid://8oeb3eepd0si" path="res://MusicOn_Normal.png.png" id="12_si72g"]
+[ext_resource type="Texture2D" uid="uid://bcfv4e603h6y0" path="res://MusicOn_Hover.png.png" id="14_5viff"]
+[ext_resource type="Texture2D" uid="uid://dw8lbr7du2x2f" path="res://MusicOff_Normal.png.png" id="15_4i8q6"]
+[ext_resource type="Texture2D" uid="uid://dm0fg8hshy1sd" path="res://MusicOff_Hover.png.png" id="16_y14f7"]
+[ext_resource type="Script" uid="uid://b6blad3nwrb5m" path="res://MusicButton.cs" id="17_nxtlc"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(344, 299)
@@ -51,11 +56,18 @@ position = Vector2(294, -608)
 stream = ExtResource("6_fysvg")
 
 [node name="MusicButton" type="TextureButton" parent="."]
-offset_left = -88.0
-offset_top = 119.0
-offset_right = -48.0
-offset_bottom = 159.0
+offset_left = -208.0
+offset_top = 608.0
+offset_right = -80.0
+offset_bottom = 736.0
 toggle_mode = true
+texture_normal = ExtResource("12_si72g")
+texture_hover = ExtResource("14_5viff")
+texture_disabled = ExtResource("16_y14f7")
+texture_focused = ExtResource("15_4i8q6")
+script = ExtResource("17_nxtlc")
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="SettingsButton" to="SettingsButton" method="pressed_Setting"]
+[connection signal="pressed" from="MusicButton" to="MusicButton" method="_on_pressed"]
+[connection signal="toggled" from="MusicButton" to="MusicButton" method="_on_toggled"]
