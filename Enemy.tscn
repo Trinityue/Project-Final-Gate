@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxmlwu47fpjoo"]
 
 [ext_resource type="Script" uid="uid://dxcyiki1y54u0" path="res://Code/Enemy.cs" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://cxrtipjcncd3k" path="res://Enemy.png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://cxrtipjcncd3k" path="res://Gamereccources/Enemy.png" id="2_s7bn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7bn3"]
 size = Vector2(55, 55.3333)
@@ -24,4 +24,4 @@ shape = SubResource("RectangleShape2D_s7bn3")
 
 [node name="Enemy_GFX" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_7k104")
+texture = ExtResource("2_s7bn3")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://sbdn1uvs70w2"]
+[gd_scene load_steps=2 format=3 uid="uid://bab1wtp4mtjo"]
 
-[ext_resource type="Texture2D" uid="uid://dhrjb3uxoenwl" path="res://Game-Over-Placeholder.png" id="1_st2c2"]
+[ext_resource type="Texture2D" uid="uid://dhrjb3uxoenwl" path="res://Gamereccources/Game-Over-Placeholder.png" id="1_st2c2"]
 
 [node name="Game-Over-Placeholder" type="Node2D"]
 

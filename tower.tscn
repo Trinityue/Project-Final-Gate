@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://df08a7wkh8vir" path="res://Code/Tower.cs" id="1_stebd"]
 [ext_resource type="PackedScene" uid="uid://dpivechu4fypg" path="res://bullet.tscn" id="2_stebd"]
-[ext_resource type="Texture2D" uid="uid://b6cu2350qde6u" path="res://Crossbow_Turret_Bow (2).png" id="3_stebd"]
-[ext_resource type="Texture2D" uid="uid://cmbua8xhnsjq4" path="res://Tower_Base.png" id="3_vxmma"]
+[ext_resource type="Texture2D" uid="uid://b6cu2350qde6u" path="res://Gamereccources/Crossbow_Turret_Bow (2).png" id="3_stebd"]
+[ext_resource type="Texture2D" uid="uid://cmbua8xhnsjq4" path="res://Gamereccources/Tower_Base.png" id="3_vxmma"]
 [ext_resource type="Script" uid="uid://bk5iudtlgu2xr" path="res://SellMenuTower.cs" id="6_lny5m"]
 
 [sub_resource type="Animation" id="Animation_vxmma"]
@@ -19,6 +19,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_stebd")]
 }
 
 [sub_resource type="Animation" id="Animation_jbe1c"]

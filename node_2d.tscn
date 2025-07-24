@@ -8,11 +8,11 @@
 [ext_resource type="Script" uid="uid://u1j5cu056jsd" path="res://Code/GameLabel.cs" id="4_ir8iy"]
 [ext_resource type="Script" uid="uid://cc53ibyghktdp" path="res://Code/MoneyLabel.cs" id="5_4d7sh"]
 [ext_resource type="PackedScene" uid="uid://fi6rp7x77p5t" path="res://tower.tscn" id="5_kdubu"]
-[ext_resource type="Texture2D" uid="uid://t6m5n07nqmwp" path="res://HealthPoints_UI.png" id="6_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://t6m5n07nqmwp" path="res://Gamereccources/HealthPoints_UI.png" id="6_0h7mo"]
 [ext_resource type="PackedScene" uid="uid://cnkslcoxcla51" path="res://Enemy_II.tscn" id="6_d21ai"]
-[ext_resource type="PackedScene" uid="uid://tnpgx4wfxn6c" path="res://money_managment.tscn" id="6_kdubu"]
+[ext_resource type="PackedScene" path="res://money_managment.tscn" id="6_kdubu"]
 [ext_resource type="Script" uid="uid://cpc1mf5idtx8i" path="res://Code/SpawnerIi.cs" id="7_rj586"]
-[ext_resource type="Texture2D" uid="uid://cb6yukhpxgx2i" path="res://Coin_UI.png.png" id="8_x0ka3"]
+[ext_resource type="Texture2D" uid="uid://cb6yukhpxgx2i" path="res://Gamereccources/Coin_UI.png.png" id="9_nr8wp"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
@@ -106,7 +106,7 @@ offset_left = -0.00755908
 offset_top = 47.0098
 offset_right = 60.9924
 offset_bottom = 109.01
-texture = ExtResource("8_x0ka3")
+texture = ExtResource("9_nr8wp")
 expand_mode = 1
 stretch_mode = 4
 

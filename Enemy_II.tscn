@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnkslcoxcla51"]
 
-[ext_resource type="Texture2D" uid="uid://dwogjqppp1d4i" path="res://Enemy_II.png" id="1_rst77"]
+[ext_resource type="Texture2D" uid="uid://dwogjqppp1d4i" path="res://Gamereccources/Enemy_II.png" id="1_rst77"]
 [ext_resource type="Script" uid="uid://dwc0lsnvbid2w" path="res://Code/EnemyIi.cs" id="1_u271w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u271w"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rpihaexm5dqm" path="res://Code/InfernoTower.cs" id="1_sh5yq"]
 [ext_resource type="PackedScene" uid="uid://dpivechu4fypg" path="res://bullet.tscn" id="2_ndxsf"]
-[ext_resource type="Texture2D" uid="uid://bf0algkxwhebg" path="res://Inferno_Tower.png" id="2_tmni7"]
+[ext_resource type="Texture2D" uid="uid://bf0algkxwhebg" path="res://Gamereccources/Inferno_Tower.png" id="2_tmni7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la12i"]
 size = Vector2(128, 120)
