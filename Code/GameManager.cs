@@ -13,6 +13,16 @@ public partial class GameManager : Node2D
     private bool mouseInNoBuildZone = false;
 
     private float towerchoiche = 1f;
+    private CommandCenter commandCenter;
+
+    public override void _Ready()
+    {
+        commandCenter = GetNodeOrNull<CommandCenter>("CommandCenter");
+        if (commandCenter != null)
+            commandCenter.Visible = false;
+        else
+            GD.PrintErr("CommandCenter nicht gefunden! Bitte SceneTree prüfen.");
+    }
 
     public override void _Process(double delta)
     {
@@ -31,6 +41,12 @@ public partial class GameManager : Node2D
             towerchoiche = 2f;
             GD.Print("Turm 2 ausgewählt");
         }
+
+        if (Input.IsActionJustPressed("ui_CC") && commandCenter != null)
+        {
+            commandCenter.Visible = !commandCenter.Visible; 
+            GD.Print("Command Center toggled: " + commandCenter.Visible);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -43,7 +59,7 @@ public partial class GameManager : Node2D
                 return;
             }
 
-            if (MoneyManagment.Instance.CanAfford(TowerCost)&& towerchoiche == 1f && Tower1Scene != null)
+            if (MoneyManagment.Instance.CanAfford(TowerCost) && towerchoiche == 1f && Tower1Scene != null)
             {
                 var tower = Tower1Scene.Instantiate() as Node2D;
                 tower.GlobalPosition = GetGlobalMousePosition();
@@ -78,5 +94,6 @@ public partial class GameManager : Node2D
         mouseInNoBuildZone = false;
         GD.Print("Mouse exited NoBuildZone");
     }
+
 }
 

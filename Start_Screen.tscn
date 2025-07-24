@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkput3ddcivrd"]
+[gd_scene load_steps=18 format=3 uid="uid://bkput3ddcivrd"]
 
 [ext_resource type="Texture2D" uid="uid://rh3cftbpepfk" path="res://Gamereccources/Background_Game.png" id="1_q5oj5"]
+[ext_resource type="Script" uid="uid://dqytfwed2hdrr" path="res://Code/StartScreen.cs" id="1_si72g"]
 [ext_resource type="Texture2D" uid="uid://de1kvajixk7f2" path="res://Gamereccources/New Piskel-1.png (1)-1.png.png" id="2_q5oj5"]
 [ext_resource type="Texture2D" uid="uid://myodc0msd2yp" path="res://Gamereccources/New Piskel-1.png (1)-2.png.png" id="3_y7cqw"]
 [ext_resource type="Texture2D" uid="uid://b5spyr0leiht7" path="res://Gamereccources/New Piskel-1.png (1)-3.png.png" id="4_4og4g"]
@@ -17,8 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://dm0fg8hshy1sd" path="res://Gamereccources/MusicOff_Hover.png.png" id="16_y14f7"]
 [ext_resource type="Script" uid="uid://b6blad3nwrb5m" path="res://MusicButton.cs" id="17_nxtlc"]
 
-[node name="Node2D" type="Node2D"]
+[node name="StartScene" type="Node2D"]
 position = Vector2(344, 299)
+script = ExtResource("1_si72g")
 
 [node name="BackgroundGame" type="Sprite2D" parent="."]
 position = Vector2(618, 244)
