@@ -61,8 +61,8 @@ public partial class GameManager : Node2D
                 return;
             }
 
-            float minDistance = 43f; // Mindestabstand zwischen Tower und NoBuildZone
-            float minDistanceTower = 84f; // Mindestabstand zwischen Tower und Tower
+            float minDistance = 46f; // Mindestabstand zwischen Tower und NoBuildZone
+            float minDistanceTower = 90f; // Mindestabstand zwischen Tower und Tower
             Vector2 mousePos = GetGlobalMousePosition();
             bool canPlace = true;
             // Abstand zu anderen Türmen prüfen
