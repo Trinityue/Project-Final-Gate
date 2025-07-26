@@ -2,6 +2,8 @@ using Godot;
 using System;
 
 public partial class GameManager : Node2D
+
+    // ...existing code...
 {
     [Export] public PackedScene Tower1Scene;
     [Export] public PackedScene Tower2Scene;
@@ -59,20 +61,71 @@ public partial class GameManager : Node2D
                 return;
             }
 
+            float minDistance = 43f; // Mindestabstand zwischen Tower und NoBuildZone
+            float minDistanceTower = 84f; // Mindestabstand zwischen Tower und Tower
+            Vector2 mousePos = GetGlobalMousePosition();
+            bool canPlace = true;
+            // Abstand zu anderen Türmen prüfen
+            foreach (var node in GetTree().GetNodesInGroup("Towers"))
+            {
+                if (node is Node2D tower)
+                {
+                    if (tower.GlobalPosition.DistanceTo(mousePos) < minDistanceTower)
+                    {
+                        canPlace = false;
+                        break;
+                    }
+                }
+            }
+
+            // Abstand zur NoBuildZone prüfen
+            if (canPlace)
+            {
+                var noBuildZone = GetTree().Root.FindChild("NoBuildZone", true, false) as Area2D;
+                if (noBuildZone != null)
+                {
+                    foreach (Node child in noBuildZone.GetChildren())
+                    {
+                        if (child is CollisionPolygon2D poly)
+                        {
+                            var points = poly.Polygon;
+                            for (int i = 0; i < points.Length; i++)
+                            {
+                                Vector2 a = poly.ToGlobal(points[i]);
+                                Vector2 b = poly.ToGlobal(points[(i + 1) % points.Length]);
+                                float dist = DistancePointToSegment(mousePos, a, b);
+                                if (dist < minDistance)
+                                {
+                                    canPlace = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!canPlace) break;
+                    }
+                }
+            }
+
+            if (!canPlace)
+            {
+                GD.Print("Zu nah an einem anderen Turm oder an der NoBuildZone!");
+                return;
+            }
+
             if (MoneyManagment.Instance.CanAfford(TowerCost) && towerchoiche == 1f && Tower1Scene != null)
             {
                 var tower = Tower1Scene.Instantiate() as Node2D;
-                tower.GlobalPosition = GetGlobalMousePosition();
+                tower.GlobalPosition = mousePos;
                 GetTree().Root.AddChild(tower);
-
+                tower.AddToGroup("Towers");
                 MoneyManagment.Instance.Spend(TowerCost);
             }
             else if (MoneyManagment.Instance.CanAfford(TowerCost) && towerchoiche == 2f && Tower2Scene != null)
             {
                 var tower = Tower2Scene.Instantiate() as Node2D;
-                tower.GlobalPosition = GetGlobalMousePosition();
+                tower.GlobalPosition = mousePos;
                 GetTree().Root.AddChild(tower);
-
+                tower.AddToGroup("Towers");
                 MoneyManagment.Instance.Spend(TowerCost);
             }
             else
@@ -93,6 +146,16 @@ public partial class GameManager : Node2D
     {
         mouseInNoBuildZone = false;
         GD.Print("Mouse exited NoBuildZone");
+    }
+
+    // Hilfsfunktion für Abstand Punkt zu Linie
+    private float DistancePointToSegment(Vector2 p, Vector2 a, Vector2 b)
+    {
+        Vector2 ab = b - a;
+        float t = ((p - a).Dot(ab)) / ab.LengthSquared();
+        t = Mathf.Clamp(t, 0, 1);
+        Vector2 closest = a + t * ab;
+        return p.DistanceTo(closest);
     }
 
 }

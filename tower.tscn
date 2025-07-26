@@ -101,6 +101,7 @@ offset_right = 45.0
 offset_bottom = 47.0
 button_mask = 2
 script = ExtResource("6_lny5m")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_changed" from="TowerGfx/AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="current_animation_changed" from="TowerGfx/AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]

@@ -1,9 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://bab1wtp4mtjo"]
+[gd_scene load_steps=6 format=3 uid="uid://bab1wtp4mtjo"]
 
 [ext_resource type="Texture2D" uid="uid://dhrjb3uxoenwl" path="res://Gamereccources/Game-Over-Placeholder.png" id="1_st2c2"]
+[ext_resource type="Texture2D" uid="uid://d28facp64onep" path="res://Gamereccources/reset_pressed.png (2).png" id="2_ihxv2"]
+[ext_resource type="Texture2D" uid="uid://q8dtrkfq6d4n" path="res://Gamereccources/Reset_pressed.png.png" id="3_xpcu1"]
+[ext_resource type="Texture2D" uid="uid://pdh8ukgvuo0m" path="res://Gamereccources/reset_normal.png.png" id="4_8fg65"]
+[ext_resource type="Script" uid="uid://caf0ygyyebllw" path="res://Reset_Button.cs" id="5_cva0r"]
 
 [node name="Game-Over-Placeholder" type="Node2D"]
 
 [node name="Game-over-placeholder" type="Sprite2D" parent="."]
-position = Vector2(961, 542)
+position = Vector2(963, 542)
 texture = ExtResource("1_st2c2")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 700.0
+offset_top = 450.0
+offset_right = 1153.0
+offset_bottom = 842.0
+texture_normal = ExtResource("2_ihxv2")
+texture_pressed = ExtResource("3_xpcu1")
+texture_hover = ExtResource("4_8fg65")
+stretch_mode = 4
+script = ExtResource("5_cva0r")
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressedA"]

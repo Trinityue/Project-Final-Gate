@@ -1,13 +1,13 @@
 [gd_resource type="TileSet" load_steps=19 format=3 uid="uid://5c8oyqo7tpix"]
 
-[ext_resource type="Texture2D" uid="uid://bn5fv0ixi8cbp" path="res://tilemap_packed.png" id="1_ncw2c"]
-[ext_resource type="Texture2D" uid="uid://dx20v52wjgvk7" path="res://gentle forest (48x48 resize) v01.png" id="2_ltuhv"]
-[ext_resource type="Texture2D" uid="uid://bs5pc8jekv2ch" path="res://Grass.png" id="3_gctuf"]
-[ext_resource type="Texture2D" uid="uid://7vwhe2dtg1js" path="res://Tilled Dirt.png" id="3_ymrsd"]
-[ext_resource type="Texture2D" uid="uid://4u8lxtckn0on" path="res://Hills.png" id="4_ymrsd"]
-[ext_resource type="Texture2D" uid="uid://fl2voepb1um1" path="res://Fences.png" id="5_nc4a5"]
-[ext_resource type="Texture2D" uid="uid://boj1wieay81xe" path="res://Water.png" id="6_020t7"]
-[ext_resource type="Texture2D" uid="uid://bu1lbuteuf0yn" path="res://Wooden House.png" id="7_7clpc"]
+[ext_resource type="Texture2D" uid="uid://bn5fv0ixi8cbp" path="res://Gamereccources/tilemap_packed.png" id="1_ncw2c"]
+[ext_resource type="Texture2D" uid="uid://dx20v52wjgvk7" path="res://Gamereccources/gentle forest (48x48 resize) v01.png" id="2_ltuhv"]
+[ext_resource type="Texture2D" uid="uid://bs5pc8jekv2ch" path="res://Gamereccources/Grass.png" id="3_gctuf"]
+[ext_resource type="Texture2D" uid="uid://7vwhe2dtg1js" path="res://Gamereccources/Tilled Dirt.png" id="3_ymrsd"]
+[ext_resource type="Texture2D" uid="uid://4u8lxtckn0on" path="res://Gamereccources/Hills.png" id="4_ymrsd"]
+[ext_resource type="Texture2D" uid="uid://fl2voepb1um1" path="res://Gamereccources/Fences.png" id="5_nc4a5"]
+[ext_resource type="Texture2D" uid="uid://boj1wieay81xe" path="res://Gamereccources/Water.png" id="6_020t7"]
+[ext_resource type="Texture2D" uid="uid://bu1lbuteuf0yn" path="res://Gamereccources/Wooden House.png" id="7_7clpc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltuhv"]
 texture = ExtResource("1_ncw2c")

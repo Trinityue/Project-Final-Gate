@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://q8g3t0yal8k" path="res://money_managment.tscn" id="6_kdubu"]
 [ext_resource type="Script" uid="uid://cpc1mf5idtx8i" path="res://Code/SpawnerIi.cs" id="7_rj586"]
 [ext_resource type="Texture2D" uid="uid://cb6yukhpxgx2i" path="res://Gamereccources/Coin_UI.png.png" id="9_nr8wp"]
-[ext_resource type="Script" uid="uid://dwel44wul2yf" path="res://Code/Commandcenter.cs" id="14_nr8wp"]
+[ext_resource type="Script" uid="uid://dwel44wul2yf" path="res://Code/CommandCenter.cs" id="14_nr8wp"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {
@@ -68,7 +68,7 @@ scale = Vector2(1, 1.08297)
 polygon = PackedVector2Array(1701.86, 872.274, 1737.86, 872.279, 1737.84, 968.279, 1701.84, 968.274)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="TileMapLayer/TileMapLayer2/NoBuildZone"]
-polygon = PackedVector2Array(2.38419e-07, 3.83372e-11, 1865, 0.299888, 1864.83, 1083.3, 1121.83, 1081.18, 1121.89, 698.18, 664.888, 698.107, 664.826, 1080.11, 140.826, 1080.02, 140.825, 1088.02, 40.8251, 1088.01, 40.8443, 968.007, 530.844, 967.085, 530.91, 557.085, 1270.91, 558.204, 1272.85, 944.205, 1723.85, 941.277, 1726.98, 109.278, -0.0178483, 111)
+polygon = PackedVector2Array(-0.00160774, 10, 1829, 10.2941, 1829.83, 1062.29, 1161.83, 1062.19, 1161.89, 662.187, 629.894, 661.101, 629.829, 1062.1, 133.829, 1062.02, 133.825, 1088.02, 57.8251, 1088.01, 57.8415, 986.009, 553.841, 986.089, 553.906, 586.089, 1237.91, 586.199, 1237.84, 986.199, 1753.84, 986.282, 1753.99, 86.282, -0.0136676, 85)
 
 [node name="GameManager" type="Node2D" parent="."]
 position = Vector2(2.38419e-07, 0)
