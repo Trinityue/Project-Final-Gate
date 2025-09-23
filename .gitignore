@@ -1,3 +1,4 @@
 # Stelle sicher, dass .import/ mit dabei ist:
 .godot/
 /android/
+.import/

@@ -81,7 +81,7 @@ visible = false
 position = Vector2(-2.38419e-07, 0)
 script = ExtResource("14_nr8wp")
 
-[node name="LineEdit" type="LineEdit" parent="GameManager/CommandCenter"]
+[node name="CommandInput" type="LineEdit" parent="GameManager/CommandCenter"]
 offset_right = 68.5625
 offset_bottom = 31.0
 max_length = 1000
