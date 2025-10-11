@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw2428knjn1hu"]
+
+[ext_resource type="Texture2D" uid="uid://rh3cftbpepfk" path="res://Gamereccources/Background_Game.png" id="1_ufg0w"]
+
+[node name="SettingsMenu" type="Node2D"]
+
+[node name="BackgroundGame" type="Sprite2D" parent="."]
+position = Vector2(963, 541)
+scale = Vector2(1.11167, 1.1125)
+texture = ExtResource("1_ufg0w")

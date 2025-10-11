@@ -8,7 +8,6 @@
 size = Vector2(128, 120)
 
 [node name="Inferno_Tower" type="Node2D" node_paths=PackedStringArray("Spawner")]
-visible = false
 script = ExtResource("1_sh5yq")
 BulletScene = ExtResource("2_ndxsf")
 Spawner = NodePath("Infero_Spawner_Debugging")

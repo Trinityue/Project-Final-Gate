@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2cuwf4becgj"]
+
+[ext_resource type="Texture2D" uid="uid://cbnlsfyjq2q1g" path="res://Gamereccources/Laser_Project_Final_Gate.png" id="1_r0lgn"]
+[ext_resource type="Script" uid="uid://bf4ejyfk8jvor" path="res://Code/Inferno.cs" id="2_g5mqe"]
+
+[node name="Beam" type="Node2D"]
+
+[node name="Line" type="Line2D" parent="."]
+
+[node name="Beam" type="Sprite2D" parent="."]
+position = Vector2(966, 559)
+scale = Vector2(1.04973, 1.51462)
+texture = ExtResource("1_r0lgn")
+script = ExtResource("2_g5mqe")

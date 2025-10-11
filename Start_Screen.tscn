@@ -70,6 +70,6 @@ texture_focused = ExtResource("15_4i8q6")
 script = ExtResource("17_nxtlc")
 
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="pressed_Setting"]
+[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="pressed_settings"]
 [connection signal="pressed" from="MusicButton" to="MusicButton" method="_on_pressed"]
 [connection signal="toggled" from="MusicButton" to="MusicButton" method="_on_toggled"]
