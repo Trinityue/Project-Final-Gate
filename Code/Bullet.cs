@@ -11,50 +11,65 @@ public partial class Bullet : Node2D
     public Node2D target; // Kann Enemy oder EnemyII sein
 
     public Node2D Target { get; set; }
+    // optional: keep reference to the PackedScene that produced this bullet so we can return to the correct pool
+    public PackedScene OriginScene { get; set; }
 
 
     public override void _Ready()
     {
         AddToGroup("Bullets");
-        // Suche das nächste Ziel beim Erzeugen
-        target = GetNearestEnemy();
-        if (target == null)
-            QueueFree();
+        // Target sollte vom Tower gesetzt werden. Falls nicht, versuchen wir einmalig eine Suche.
+        if (Target == null)
+        {
+            target = GetNearestEnemy();
+            if (target == null)
+            {
+                // kein Ziel verfügbar -> zurück in Pool
+                BulletPool.ReturnBullet(this, OriginScene);
+                return;
+            }
+            else
+            {
+                Target = target;
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (target == null || !IsInstanceValid(target))
+        if (GameState.Paused) return;
+
+        if (Target == null || !IsInstanceValid(Target))
         {
-            QueueFree();
+            BulletPool.ReturnBullet(this, OriginScene);
             return;
         }
 
-        Vector2 direction = (target.GlobalPosition - GlobalPosition).Normalized();
-        Rotation = (target.GlobalPosition - GlobalPosition).Angle(); // Bullet zeigt zum Ziel
+        Vector2 direction = (Target.GlobalPosition - GlobalPosition).Normalized();
+        Rotation = (Target.GlobalPosition - GlobalPosition).Angle(); // Bullet zeigt zum Ziel
         GlobalPosition += direction * Speed * (float)delta;
 
         // Verschwinde, wenn Ziel erreicht
-        if (GlobalPosition.DistanceTo(target.GlobalPosition) < 10f)
+        if (GlobalPosition.DistanceTo(Target.GlobalPosition) < 10f)
         {
             // Call TakeDamage directly on known enemy types to avoid reflection
-            if (target is Enemy enemy)
+            if (Target is Enemy enemy)
             {
                 enemy.TakeDamage(Damage, Armourpircing > enemy.Enemy_1_Armour, Armourpircing);
             }
-            else if (target is EnemyIi enemyIi)
+            else if (Target is EnemyIi enemyIi)
             {
                 enemyIi.TakeDamage(Damage, Armourpircing > enemyIi.Enemy_2_Armour, Armourpircing);
             }
             else
             {
                 // Fallback: try reflection once (very rare)
-                var method = target.GetType().GetMethod("TakeDamage");
+                var method = Target.GetType().GetMethod("TakeDamage");
                 if (method != null)
-                    method.Invoke(target, new object[] { Damage });
+                    method.Invoke(Target, new object[] { Damage });
             }
-
-            QueueFree();
+            // return to pool instead of freeing
+            BulletPool.ReturnBullet(this, OriginScene);
         }
     }
 
@@ -75,5 +90,16 @@ public partial class Bullet : Node2D
             }
         }
         return nearest;
+    }
+
+    // Called by pool when this bullet is reused
+    public void ResetForReuse(Vector2 position, Node2D newTarget, PackedScene originScene)
+    {
+        GlobalPosition = position;
+        Target = newTarget;
+        OriginScene = originScene;
+        Show();
+        SetProcess(true);
+        SetPhysicsProcess(true);
     }
 }

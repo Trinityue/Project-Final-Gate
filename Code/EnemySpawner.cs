@@ -19,6 +19,8 @@ public partial class EnemySpawner : Node2D
 
     public override void _Process(double delta)
     {
+        if (GameState.Paused) return;
+
         tus += (float)delta;
         if (tus > spawn_rate)
         {
@@ -33,13 +35,24 @@ public partial class EnemySpawner : Node2D
             return;
 
         spawn_rate = 1f / eps; 
-
-        var enemyInstance = enemyScene.Instantiate();
-        if (enemyInstance is EnemyIi enemyII)
+        // try to get an enemy from the pool first
+        var nd = EnemyPool.GetEnemy(enemyScene);
+        if (nd is EnemyIi enemyII)
         {
             enemyII.Path = Path;
             enemyII.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
             AddChild(enemyII);
+        }
+        else if (nd is Enemy enemy)
+        {
+            enemy.Path = Path;
+            enemy.Speed = (float)GD.RandRange(MinSpeed, MaxSpeed);
+            AddChild(enemy);
+        }
+        else if (nd != null)
+        {
+            // unexpected type but add to scene so it can run
+            AddChild(nd);
         }
         
     }

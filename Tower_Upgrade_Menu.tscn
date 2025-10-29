@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://beasn5eqp4pw5"]
+
+[ext_resource type="Texture2D" uid="uid://cgqbd8nkpjgxk" path="res://MenuPlaceholder.png" id="1_xllg3"]
+[ext_resource type="Script" uid="uid://d0oij27d6mvyh" path="res://Code/ManualButton.cs" id="2_sodms"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-2, -2)
+
+[node name="MenuPlaceholder" type="Sprite2D" parent="."]
+position = Vector2(164.755, 239.5)
+scale = Vector2(0.489533, 0.475)
+texture = ExtResource("1_xllg3")
+
+[node name="Manual_Button" type="Button" parent="."]
+offset_left = 72.0
+offset_top = 368.0
+offset_right = 244.0
+offset_bottom = 449.0
+text = "Manual Control"
+script = ExtResource("2_sodms")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Manual_Button" to="Manual_Button" method="_on_pressed"]

@@ -33,18 +33,17 @@ public partial class Enemy : Node2D
         gameManager = GetNodeOrNull<GameManager>("/root/Node2D/GameManager");
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
+        if (GameState.Paused) return;
         if (pathFollow == null || Path == null)
             return;
 
         pathFollow.Progress += Speed * (float)delta;
         GlobalPosition = pathFollow.GlobalPosition;
 
-       
         if (pathFollow.ProgressRatio >= 1.0f)
         {
-            var gameManager = GetNode<GameManager>("/root/Node2D/GameManager");
             GD.Print("Enemy end");
             if (gameManager != null)
             {
@@ -58,15 +57,16 @@ public partial class Enemy : Node2D
                 }
                 else if (Health / MaxHealth <= 0.75f)
                 {
-                    gameManager.Player_Health -= Damage / 2; ;
+                    gameManager.Player_Health -= Damage / 2;
                 }
                 else if (Health / MaxHealth <= 1.0f)
                 {
                     gameManager.Player_Health -= Damage;
                 }
             }
-            
-            QueueFree();
+
+            // return to pool instead of freeing to reduce allocations
+            EnemyPool.ReturnEnemy(this, null);
         }
     }
 

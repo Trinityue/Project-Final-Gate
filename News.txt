@@ -1,0 +1,4 @@
+Alpha 0.1.9 
+    - addition of Commands in Commandcenter 
+    - adding a menuScene for upgrademenu placeholder
+    - adding a Manual Button in Upgrade Menu for Manually controlling the Tower (currently only on Tower)

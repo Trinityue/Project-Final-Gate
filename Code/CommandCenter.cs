@@ -92,7 +92,7 @@ public partial class CommandCenter : Node2D
             switch (cmd)
             {
                 case "help":
-                    PrintOutput("Verfügbare Befehle: help, setmoney <value>, addmoney <value>, setmps <value>, settowercost <value>, sethealth <value>, setmaxhealth <value>, settowerchoice <1|2>");
+                    PrintOutput("Verfügbare Befehle: help, setmoney <value>, addmoney <value>, setmps <value>, settowercost <value>, sethealth <value>, setmaxhealth <value>, settowerchoice <1|2>, placingdebug <true|false>, set.resolution <width> <height>");
                     break;
                 case "setmoney":
                     if (parts.Length >= 2 && float.TryParse(parts[1], out float m))
@@ -196,6 +196,17 @@ public partial class CommandCenter : Node2D
                         }
                     }
                     else PrintOutput("Usage: placingdebug <true|false>");
+                    break;
+                case "set.resolution":
+                    if (parts.Length >= 3 && int.TryParse(parts[1], out int width) && int.TryParse(parts[2], out int height))
+                    {
+                        // Set the project default window size so the change persists.
+                        ProjectSettings.SetSetting("display/window/size/width", width);
+                        ProjectSettings.SetSetting("display/window/size/height", height);
+                        ProjectSettings.Save();
+                        PrintOutput($"Auflösung in ProjectSettings gesetzt: {width}x{height} (wird beim nächsten Start aktiv)");
+                    }
+                    else PrintOutput("Usage: set.resolution <width> <height>");
                     break;
                 default:
                     PrintOutput("Unbekannter Befehl. Tipp: help");

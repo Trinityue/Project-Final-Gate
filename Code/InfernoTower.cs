@@ -41,6 +41,7 @@ public partial class InfernoTower : Node2D
 
     public override void _Process(double delta)
     {
+        if (GameState.Paused) return;
         // Optional: visual feedback for enemies in range can be done here
         foreach (var enemy in GetTree().GetNodesInGroup("Enemies"))
         {
@@ -62,6 +63,7 @@ public partial class InfernoTower : Node2D
 
     private void OnDamageTick()
     {
+        if (GameState.Paused) return;
         // get up to MaxTargets nearest enemies in range
         var enemiesInRange = new List<Node2D>();
         foreach (var node in GetTree().GetNodesInGroup("Enemies"))

@@ -155,7 +155,8 @@ public partial class GameManager : Node2D
 
     public override void _Input(InputEvent @event)
     {
-        if (_isPaused) return;
+        // if the game is paused by UI or a tower is in manual control, do not handle placement clicks
+        if (_isPaused || GameState.Paused || GameState.ManualControlActive) return;
         if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
         {
             if (mouseInNoBuildZone && PlacingDebug == true)
