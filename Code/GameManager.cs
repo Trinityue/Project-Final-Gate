@@ -15,6 +15,7 @@ public partial class GameManager : Node2D
     public bool PlacingDebug { get; set; } = false;
 
     private bool mouseInNoBuildZone = false;
+    private bool mouseInWater = false;
 
     private float towerchoiche = 1f;
     private CommandCenter commandCenter;
@@ -143,14 +144,22 @@ public partial class GameManager : Node2D
             }
 
         }
-            else if (Input.IsActionJustPressed("ui_2"))
+        else if (Input.IsActionJustPressed("ui_2"))
+        {
+            towerchoiche = 2f;
+            if (PlacingDebug == true)
             {
-                towerchoiche = 2f;
-                if (PlacingDebug == true)
-                {
-                    GD.Print("Turm 2 ausgewählt");
-                }
+                GD.Print("Turm 2 ausgewählt");
             }
+        }
+        else if (Input.IsActionJustPressed("ui_3"))
+        {
+            towerchoiche = 3f;
+            if (PlacingDebug == true)
+            {
+                GD.Print("Ship ausgewählt");
+            }
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -159,9 +168,13 @@ public partial class GameManager : Node2D
         if (_isPaused || GameState.Paused || GameState.ManualControlActive) return;
         if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
         {
-            if (mouseInNoBuildZone && PlacingDebug == true)
+            // prevent placing in NoBuildZone or Water areas (always block placement; only print when PlacingDebug)
+            if (mouseInNoBuildZone || mouseInWater)
             {
-                GD.Print("Hier darf kein Turm platziert werden!");
+                if (PlacingDebug == true)
+                {
+                    GD.Print("Hier darf kein Turm platziert werden!");
+                }
                 return;
             }
 
@@ -259,6 +272,25 @@ public partial class GameManager : Node2D
         if (PlacingDebug == true)
         {
             GD.Print("Mouse exited NoBuildZone");
+        }
+    }
+
+    // Signal handlers for the "water" Area2D (connected in the scene)
+    public void _on_water_mouse_entered()
+    {
+        mouseInWater = true;
+        if (PlacingDebug == true)
+        {
+            GD.Print("Mouse entered Water area");
+        }
+    }
+
+    public void _on_water_mouse_exited()
+    {
+        mouseInWater = false;
+        if (PlacingDebug == true)
+        {
+            GD.Print("Mouse exited Water area");
         }
     }
 

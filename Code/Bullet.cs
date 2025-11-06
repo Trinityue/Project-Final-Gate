@@ -3,8 +3,6 @@ using System;
 
 public partial class Bullet : Node2D
 {
-    
-
     [Export] public float Speed = 300f;
     [Export] public float Damage = 10f;
     [Export] public float Armourpircing = 50f;
